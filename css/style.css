@@ -134,9 +134,9 @@ main {
     height: 48rem;
     flex-direction: row;
     justify-content: center;
-    gap: 4em;
+    gap: 6em;
     cursor: pointer;
-    margin: 2em, auto;
+    margin: 2em auto;
 }
 
 .cardCurso h2, .cardCurso p, .cardGrandeCurso h2, .cardGrandeCurso p{
@@ -221,15 +221,71 @@ a {
     transition: width 1s linear;
 }
 
-#resposta {
-    font-size: 1.0rem;
-    height: 3rem;
-    box-sizing: content-box;
-    padding: 0.3rem;
+#velocidade {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    width: 100%;
+}
+
+#velocidade .cardGrandeCurso {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    min-height: 28rem;
+    padding: 2.5rem 1.5rem;
+    margin: 1rem auto;
+    cursor: default;
+}
+
+#velocidade .cardGrandeCurso:hover {
+    transform: none;
+}
+
+#recorde {
+    color: #A3B18A;
+    font-size: 1.4rem;
 }
 
 #questao {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
+    font-weight: bold;
+    word-break: break-word;
+    line-height: 1.4;
+}
+
+#formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+    max-width: 320px;
+}
+
+#resposta {
+    font-size: 2rem;
+    height: 3.5rem;
+    width: 100%;
+    text-align: center;
+    border-radius: 8px;
+    border: 2px solid #A3B18A;
+    background-color: #DAD7CD;
+    color: #344E41;
+    outline: none;
+    padding: 0.2rem 0.5rem;
+    box-sizing: border-box;
+}
+
+#formulario button {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 0.8em;
 }
 
 @media (max-width: 768px) {
@@ -260,5 +316,59 @@ a {
 
     #sobre p {
         font-size: 1rem;
+    }
+
+    .cardGrandeCurso {
+        flex-direction: column;
+        height: auto;
+        gap: 2rem;
+        max-width: 92vw;
+        padding: 1.5rem 1rem;
+        font-size: 1.6rem;
+    }
+
+    .cardGrandeCurso img {
+        width: 5em;
+    }
+
+    #velocidade .cardGrandeCurso {
+        min-height: auto;
+        gap: 1.5rem;
+        padding: 2rem 1rem;
+    }
+
+    #nivel {
+        font-size: 1.8rem;
+    }
+
+    #recorde {
+        font-size: 1.2rem;
+    }
+
+    #questao {
+        font-size: 1.8rem;
+        word-spacing: 0.4em !important;
+        letter-spacing: 0.05em !important;
+    }
+
+    #resposta {
+        font-size: 1.6rem;
+        height: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 1.2rem 1rem;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    #questao {
+        font-size: 1.5rem;
+        word-spacing: 0.25em !important;
     }
 }
