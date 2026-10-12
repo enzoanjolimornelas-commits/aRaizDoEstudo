@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seja Rápido!</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/velocidade.js" defer></script>
 </head>
 <body>
     <header>
@@ -17,10 +18,23 @@
             <button>Fazer Login</button>
         </div>
     </header>
-    <div id="velocidade">
-        <div id="timer"></div>
-        <div class="cardGrandeCurso"></div>
-    </div>
     
+    <div id="barra-container">
+        <div id="barra-tempo"></div>
+    </div>
+
+    <div id="velocidade">
+        <div class="cardGrandeCurso">
+            <div>
+                <h2 id="nivel"></h2>
+                <h3 id="recorde" style="display: none;"></h3>
+            </div>
+            <p id="questao"></p>
+            <form id="formulario">
+                <input type="number" id="resposta" required>
+                <button type="submit">Responder</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
