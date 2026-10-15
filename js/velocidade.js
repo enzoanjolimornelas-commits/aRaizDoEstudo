@@ -4,8 +4,10 @@ const questao = document.getElementById('questao');
 const recorde = document.getElementById('recorde');
 const resposta = document.getElementById('resposta');
 const barraTempo = document.getElementById('barra-tempo');
+const barraVidas = document.getElementById('vidas');
+const folhas = document.querySelectorAll('.folha');
 
-questao.style.wordSpacing = "1.5em";
+questao.style.wordSpacing = "1.0em";
 questao.style.letterSpacing = "0.1em";
 
 let resultado, nivel = 1;
@@ -13,6 +15,9 @@ let save = Number(localStorage.getItem("save"));
 let contador;
 let tempoTotal;
 let intervalo; 
+let normalMode = false;
+let vidas;
+let cont = 2;
 
 const random = (range = 1) => Math.ceil(Math.random() * range);
 
@@ -36,7 +41,7 @@ function gerarNovaQuestao() {
     clearInterval(intervalo);
 
     if(nivel <= 10) {
-        tempoTotal = 5;
+        tempoTotal = normalMode ? 10 : 5;
         let numero1 = random(10);
         let numero2 = random(10);
         let operacao;
@@ -57,7 +62,7 @@ function gerarNovaQuestao() {
         questao.textContent = `${numero1} ${operacao} ${numero2}`;
 
     } else if(nivel <= 20) {
-        tempoTotal = 7;
+        tempoTotal = normalMode ? 10 : 7;
         let numero1 = random(12);
         let numero2 = random(12);
         let operacao;
@@ -83,7 +88,7 @@ function gerarNovaQuestao() {
         questao.textContent = `${numero1} ${operacao} ${numero2}`;
 
     } else if (nivel <= 35) {
-        tempoTotal = 10;
+        tempoTotal = normalMode ? 15 : 10;
         let numero1 = random(20);
         let numero2 = random(20);
         let operacao;
@@ -116,7 +121,7 @@ function gerarNovaQuestao() {
         questao.textContent = `${numero1} ${operacao} ${numero2}`;
 
     } else if (nivel <= 60) {
-        tempoTotal = 20;
+        tempoTotal = normalMode ? 30 : 20;
         let numero1;
         let numero2;
         let numero3;
@@ -197,8 +202,8 @@ function gerarNovaQuestao() {
                 break;
         }
 
-    } else if (nivel <= 100) {
-        tempoTotal = 35;
+    } else {
+        tempoTotal = normalMode ? 40 : 35;
         let numero1;
         let numero2;
         let numero3;
@@ -385,11 +390,27 @@ function gerarNovaQuestao() {
         if(contador <= 0) {
             clearInterval(intervalo);
             setTimeout(() => {
-                alert("Tempo acabou! Nível: " + nivel);
-                checarRecorde();
-                nivel = 1;
-                level.textContent = "Nível " + nivel;
-                gerarNovaQuestao();
+
+                vidas -= 1;
+                folhas[cont].style.display = 'none';
+                cont--;
+
+                if(vidas === 0){
+                    alert("As folhas acabaram! Nível: " + nivel + "\nResultado: " + resultado);
+                    checarRecorde();
+                    nivel = 1;
+                    cont = 2;
+                    for(let i = 0; i < 3; i++) {
+                        folhas[i].style.display = 'inline';
+                    }
+                    level.textContent = "Nível " + nivel;
+                    gerarNovaQuestao();
+                } else {
+                    checarRecorde();
+                    nivel++;
+                    level.textContent = "Nível " + nivel;
+                    gerarNovaQuestao();
+                }
             }, 100); 
         }
     }, 1000);
@@ -405,15 +426,97 @@ formulario.addEventListener('submit', function(event) {
         level.textContent = "Nível " + nivel;
         gerarNovaQuestao(); 
     } else {
-        alert("Erro! Nível: " + nivel + "\nResultado: " + resultado);
-        checarRecorde();
-        nivel = 1;
-        level.textContent = "Nível " + nivel;
-        gerarNovaQuestao();
+        vidas -= 1;
+        folhas[cont].style.display = 'none';
+        cont--;
+        if(vidas === 0){
+            alert("As folhas acabaram! Nível: " + nivel + "\nResultado: " + resultado);
+            checarRecorde();
+            nivel = 1;
+            cont = 2;
+            for(let i = 0; i < 3; i++) {
+                folhas[i].style.display = 'block';
+            }
+            level.textContent = "Nível " + nivel;
+            gerarNovaQuestao();
+        } else {
+            checarRecorde();
+            nivel++;
+            level.textContent = "Nível " + nivel;
+            gerarNovaQuestao();
+        }
     }
 
     formulario.reset();
     resposta.focus(); 
 });
 
-gerarNovaQuestao();
+document.addEventListener("DOMContentLoaded", () => {
+
+    const popUp = document.createElement("div");
+    const normal = document.createElement("div");
+    const dificil = document.createElement("div");
+
+    normal.classList.add("cardCurso");
+    dificil.classList.add("cardCurso");
+
+    normal.style.cursor = 'pointer';
+    dificil.style.cursor = 'pointer';
+
+    normal.style.justifyContent = 'center';
+    dificil.style.justifyContent = 'center';
+
+    const h2F = document.createElement("h2");
+    h2F.textContent = 'Modo Normal';
+    const h2D = document.createElement("h2");
+    h2D.textContent = 'Modo Difícil';
+    
+    const pF = document.createElement("p");
+    pF.textContent = 'Mais tempo e 3 vidas';
+    const pD = document.createElement("p");
+    pD.textContent = 'Apenas uma vida';
+
+    normal.appendChild(h2F);
+    dificil.appendChild(h2D);
+
+    normal.appendChild(pF);
+    dificil.appendChild(pD);
+
+    popUp.style.position = 'fixed';
+    popUp.style.top = '50%';
+    popUp.style.left = '50%';
+    popUp.style.transform = 'translate(-50%, -50%)';
+    popUp.style.backgroundColor = '#ffffff';
+    popUp.style.border = '1px solid #e2e8f0';
+    popUp.style.width = '500px';
+    popUp.style.padding = '2rem';
+    popUp.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
+    popUp.style.borderRadius = '0.5rem';
+    popUp.style.display = 'flex';
+    popUp.style.justifyContent = 'center';
+    popUp.style.alignItems = 'center'
+    popUp.style.gap = '1.25rem';
+    popUp.style.zIndex = '2000';
+
+    popUp.appendChild(normal);
+    popUp.appendChild(dificil);
+
+    document.body.appendChild(popUp);
+
+    normal.addEventListener('click', () => {
+        popUp.style.display = 'none';
+        barraVidas.style.display = 'flex';
+        normalMode = true;
+        vidas = 3;
+
+        gerarNovaQuestao();
+    });
+
+    dificil.addEventListener('click', () => {
+        popUp.style.display = 'none';
+        barraVidas.style.display = 'none';
+        vidas = 1;
+
+        gerarNovaQuestao();
+    });
+});

@@ -100,6 +100,13 @@ main {
     background-color: #E8F1E1;
 }
 
+#vidas {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 2em;
+}
+
 #cursos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
