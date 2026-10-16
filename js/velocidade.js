@@ -7,17 +7,91 @@ const barraTempo = document.getElementById('barra-tempo');
 const barraVidas = document.getElementById('vidas');
 const folhas = document.querySelectorAll('.folha');
 const cardJogo = document.querySelector('#velocidade .cardGrandeCurso');
+const btnMenos = document.getElementById('btn-menos');
 
 questao.style.wordSpacing = "1.0em";
 questao.style.letterSpacing = "0.1em";
 
 let resultado, nivel = 1;
-let save = Number(localStorage.getItem("save"));
+let save = 0;
 let tempoTotal;
 let timerJogo; 
 let normalMode = false;
 let vidas;
 let cont = 2;
+let ultimoNivelNotificado = 0;
+let timerAviso;
+let dicaNegativoMostrada = false;
+let timerDicaNegativo;
+
+const avisoElemento = document.createElement('div');
+avisoElemento.classList.add('aviso-dificuldade');
+document.body.appendChild(avisoElemento);
+
+const dicaNegativo = document.createElement('div');
+dicaNegativo.classList.add('dica-negativo');
+dicaNegativo.textContent = 'Toque em +/- para número negativo!';
+
+if (btnMenos && btnMenos.parentElement) {
+    btnMenos.parentElement.style.position = 'relative';
+    btnMenos.parentElement.appendChild(dicaNegativo);
+}
+
+function mostrarDicaNegativo() {
+    if (dicaNegativoMostrada || !btnMenos) return;
+    dicaNegativoMostrada = true;
+    clearTimeout(timerDicaNegativo);
+    dicaNegativo.classList.add('mostrar');
+
+    timerDicaNegativo = setTimeout(() => {
+        dicaNegativo.classList.remove('mostrar');
+    }, 5000);
+}
+
+function mostrarAviso(titulo, mensagem) {
+    clearTimeout(timerAviso);
+    avisoElemento.innerHTML = `<h4>${titulo}</h4><p>${mensagem}</p>`;
+    avisoElemento.classList.add('mostrar');
+
+    timerAviso = setTimeout(() => {
+        avisoElemento.classList.remove('mostrar');
+    }, 3500);
+}
+
+function verificarSaltoDificuldade() {
+    if (nivel === ultimoNivelNotificado) return;
+
+    const marcos = {
+        1: { titulo: "Aquecimento!", texto: "Soma e Subtração básica!" },
+        11: { titulo: "Subindo o Nível!", texto: "Multiplicação e números negativos!" },
+        21: { titulo: "Nova Operação!", texto: "Divisão exata liberada!" },
+        36: { titulo: "Desafio Maior!", texto: "Expressões com 3 números!" },
+        61: { titulo: "Álgebra e Potências!", texto: "Descubra o valor de X e faça potênciações!" }
+    };
+
+    if (marcos[nivel]) {
+        ultimoNivelNotificado = nivel;
+        mostrarAviso(marcos[nivel].titulo, marcos[nivel].texto);
+        if (nivel === 11) {
+            mostrarDicaNegativo();
+        }
+        if (nivel > 1) {
+            tocarSom('levelup');
+        }
+    }
+}
+
+if (btnMenos) {
+    btnMenos.addEventListener('click', () => {
+        dicaNegativo.classList.remove('mostrar');
+        if (resposta.value.startsWith('-')) {
+            resposta.value = resposta.value.slice(1);
+        } else {
+            resposta.value = '-' + resposta.value;
+        }
+        resposta.focus();
+    });
+}
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -41,6 +115,16 @@ function tocarSom(tipo) {
         gain.gain.exponentialRampToValueAtTime(0.01, agora + 0.2);
         osc.start(agora);
         osc.stop(agora + 0.2);
+    } else if (tipo === 'levelup') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(440, agora);
+        osc.frequency.setValueAtTime(554.37, agora + 0.1);
+        osc.frequency.setValueAtTime(659.25, agora + 0.2);
+        osc.frequency.setValueAtTime(880, agora + 0.3);
+        gain.gain.setValueAtTime(0.25, agora);
+        gain.gain.exponentialRampToValueAtTime(0.01, agora + 0.45);
+        osc.start(agora);
+        osc.stop(agora + 0.45);
     } else if (tipo === 'erro') {
         osc.type = 'sawtooth';
         osc.frequency.setValueAtTime(160, agora);
@@ -71,17 +155,24 @@ function aplicarEfeitoVisual(classe) {
 
 const random = (range = 1) => Math.ceil(Math.random() * range);
 
-if(save > 1) {
-    recorde.textContent = `Recorde: ${save}`;
-    recorde.style.display = 'block';
-}
-
 level.textContent = "Nível " + nivel; 
 
+function carregarRecorde() {
+    const chave = normalMode ? "saveNormal" : "saveDificil";
+    save = Number(localStorage.getItem(chave)) || 0;
+    if (save > 1) {
+        recorde.textContent = `Recorde: ${save}`;
+        recorde.style.display = 'block';
+    } else {
+        recorde.style.display = 'none';
+    }
+}
+
 function checarRecorde() {
+    const chave = normalMode ? "saveNormal" : "saveDificil";
     if(nivel > save) {
-        localStorage.setItem("save", nivel);
-        save = Number(localStorage.getItem("save"));
+        localStorage.setItem(chave, nivel);
+        save = nivel;
         recorde.textContent = `Recorde: ${save}`;
         recorde.style.display = 'block';
     }
@@ -105,6 +196,8 @@ function perderVida() {
             alert("As folhas acabaram! Nível: " + nivel + "\nResultado: " + resultado);
             checarRecorde();
             nivel = 1;
+            ultimoNivelNotificado = 0;
+            dicaNegativoMostrada = false;
             cont = 2;
             vidas = normalMode ? 3 : 1;
             for(let i = 0; i < 3; i++) {
@@ -137,6 +230,7 @@ function iniciarCronometro() {
 
 function gerarNovaQuestao() {
     clearTimeout(timerJogo);
+    verificarSaltoDificuldade();
 
     if(nivel <= 10) {
         tempoTotal = normalMode ? 10 : 5;
@@ -448,15 +542,20 @@ function gerarNovaQuestao() {
         }
     }
 
+    if (resultado < 0) {
+        mostrarDicaNegativo();
+    }
+
     iniciarCronometro();
 }
 
 formulario.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    if (resposta.value.trim() === '') return;
+    const valorLimpo = resposta.value.trim();
+    if (valorLimpo === '' || valorLimpo === '-') return;
 
-    const respostaDoJogador = Number(resposta.value);
+    const respostaDoJogador = Number(valorLimpo);
 
     if(respostaDoJogador === resultado) {
         tocarSom('acerto');
@@ -509,6 +608,7 @@ document.addEventListener("DOMContentLoaded", () => {
         barraVidas.style.display = 'flex';
         normalMode = true;
         vidas = 3;
+        carregarRecorde();
 
         gerarNovaQuestao();
     });
@@ -518,6 +618,7 @@ document.addEventListener("DOMContentLoaded", () => {
         barraVidas.style.display = 'none';
         normalMode = false;
         vidas = 1;
+        carregarRecorde();
 
         gerarNovaQuestao();
     });

@@ -338,104 +338,43 @@ a {
     border: 2px solid #A3B18A;
 }
 
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    
-    header div {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        width: 100%;
-        max-width: 22em;
-    }
-
-    header button {
-        width: 100%;
-    }
-
-    #sobre {
-        padding: 3rem 1rem;
-    }
-
-    #sobre h2 {
-        font-size: 2rem;
-    }
-
-    #sobre p {
-        font-size: 1rem;
-    }
-
-    .cardGrandeCurso {
-        flex-direction: column;
-        height: auto;
-        gap: 2rem;
-        max-width: 92vw;
-        padding: 1.5rem 1rem;
-        font-size: 1.6rem;
-    }
-
-    .cardGrandeCurso img {
-        width: 5em;
-    }
-
-    #velocidade .cardGrandeCurso {
-        min-height: auto;
-        gap: 1.5rem;
-        padding: 2rem 1rem;
-    }
-
-    #nivel {
-        font-size: 1.8rem;
-    }
-
-    #recorde {
-        font-size: 1.2rem;
-    }
-
-    #questao {
-        font-size: 1.8rem;
-        word-spacing: 0.4em !important;
-        letter-spacing: 0.05em !important;
-    }
-
-    #resposta {
-        font-size: 1.6rem;
-        height: 3rem;
-    }
-
-    .popup-dificuldade {
-        flex-direction: column;
-        padding: 1.25rem;
-        gap: 1rem;
-        max-height: 90vh;
-        overflow-y: auto;
-    }
-
-    .popup-dificuldade .cardCurso {
-        min-height: 8rem;
-        max-width: 100%;
-        padding: 1.2rem;
-        gap: 0.5rem;
-    }
+.aviso-dificuldade {
+    position: fixed;
+    top: 6rem;
+    right: 1.5rem;
+    background: linear-gradient(180deg, #3A5A40 0%, #344E41 100%);
+    color: #F5F5DC;
+    border-left: 6px solid #A3B18A;
+    border-bottom: 4px solid #24362C;
+    padding: 1rem 1.4rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1800;
+    pointer-events: none;
+    max-width: 300px;
+    transform: translateX(130%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    opacity: 0;
 }
 
-@media (max-width: 480px) {
-    header {
-        padding: 1.2rem 1rem;
-    }
+.aviso-dificuldade.mostrar {
+    transform: translateX(0);
+    opacity: 1;
+}
 
-    .logo h1 {
-        font-size: 1.5rem;
-        text-align: center;
-    }
+.aviso-dificuldade h4 {
+    color: #A3B18A;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.3rem;
+}
 
-    #questao {
-        font-size: 1.5rem;
-        word-spacing: 0.25em !important;
-    }
+.aviso-dificuldade p {
+    color: #DAD7CD;
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 1.3;
 }
 
 @keyframes tremerErro {
@@ -461,3 +400,195 @@ a {
     border-color: #c1121f !important;
     box-shadow: 0 0 25px rgba(193, 18, 31, 0.8) !important;
 }
+
+.input-container {
+    position: relative;
+}
+
+.dica-negativo {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 0;
+    background-color: #344E41;
+    color: #F5F5DC;
+    border: 2px solid #A3B18A;
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    white-space: nowrap;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1900;
+}
+
+.dica-negativo::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 22px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: #A3B18A transparent transparent transparent;
+}
+
+.dica-negativo.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+    animation: flutuarDica 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes flutuarDica {
+    from { transform: translateY(0); }
+    to { transform: translateY(-5px); }
+}
+
+@media (max-width: 768px) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #barra-container {
+        order: -1;
+        position: sticky;
+        top: 0;
+        z-index: 1500;
+        height: 16px;
+    }
+
+    header {
+        position: relative;
+        flex-direction: row;
+        justify-content: center;
+        padding: 0.6rem 1rem;
+        gap: 0.5rem;
+        border-bottom: 3px solid #344E41;
+    }
+
+    #pesquisar,
+    header div {
+        display: none;
+    }
+
+    .logo h1 {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    #vidas {
+        padding: 0.6rem;
+        gap: 12px;
+    }
+
+    #vidas .folha {
+        width: 32px;
+    }
+
+    #sobre {
+        padding: 3rem 1rem;
+    }
+
+    #sobre h2 {
+        font-size: 2rem;
+    }
+
+    #sobre p {
+        font-size: 1rem;
+    }
+
+    .cardGrandeCurso {
+        flex-direction: column;
+        height: auto;
+        gap: 1.2rem;
+        max-width: 94vw;
+        padding: 1.2rem 1rem;
+        font-size: 1.6rem;
+    }
+
+    .cardGrandeCurso img {
+        width: 5em;
+    }
+
+    #velocidade {
+        padding: 0.5rem;
+    }
+
+    #velocidade .cardGrandeCurso {
+        min-height: auto;
+        gap: 1rem;
+        padding: 1.2rem 1rem;
+        margin: 0.2rem auto;
+    }
+
+    #nivel {
+        font-size: 1.5rem;
+    }
+
+    #recorde {
+        font-size: 1.1rem;
+    }
+
+    #questao {
+        font-size: 1.8rem;
+        word-spacing: 0.4em !important;
+        letter-spacing: 0.05em !important;
+    }
+
+    #resposta {
+        font-size: 1.6rem;
+        height: 3rem;
+    }
+
+    .aviso-dificuldade {
+        top: 2.2rem;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        width: 92%;
+        max-width: 380px;
+        padding: 0.6rem 1rem;
+        text-align: center;
+        transform: translateY(-150%);
+    }
+
+    .aviso-dificuldade.mostrar {
+        transform: translateY(0);
+    }
+
+    .aviso-dificuldade h4 {
+        font-size: 0.75rem;
+    }
+
+    .aviso-dificuldade p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.15rem;
+    }
+
+    #questao {
+        font-size: 1.5rem;
+        word-spacing: 0.25em !important;
+    }
+
+    #formulario button {
+        padding: 0.6em;
+        font-size: 1.1rem;
+    }
+
+    .dica-negativo {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.7rem;
+        white-space: normal;
+        width: 210px;
+        text-align: left;
+    }
+}
+
