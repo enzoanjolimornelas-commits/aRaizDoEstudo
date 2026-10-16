@@ -6,18 +6,68 @@ const resposta = document.getElementById('resposta');
 const barraTempo = document.getElementById('barra-tempo');
 const barraVidas = document.getElementById('vidas');
 const folhas = document.querySelectorAll('.folha');
+const cardJogo = document.querySelector('#velocidade .cardGrandeCurso');
 
 questao.style.wordSpacing = "1.0em";
 questao.style.letterSpacing = "0.1em";
 
 let resultado, nivel = 1;
 let save = Number(localStorage.getItem("save"));
-let contador;
 let tempoTotal;
-let intervalo; 
+let timerJogo; 
 let normalMode = false;
 let vidas;
 let cont = 2;
+
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function tocarSom(tipo) {
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    const agora = audioCtx.currentTime;
+
+    if (tipo === 'acerto') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(523.25, agora);
+        osc.frequency.exponentialRampToValueAtTime(880, agora + 0.12);
+        gain.gain.setValueAtTime(0.2, agora);
+        gain.gain.exponentialRampToValueAtTime(0.01, agora + 0.2);
+        osc.start(agora);
+        osc.stop(agora + 0.2);
+    } else if (tipo === 'erro') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(160, agora);
+        osc.frequency.linearRampToValueAtTime(110, agora + 0.25);
+        gain.gain.setValueAtTime(0.2, agora);
+        gain.gain.exponentialRampToValueAtTime(0.01, agora + 0.25);
+        osc.start(agora);
+        osc.stop(agora + 0.25);
+    } else if (tipo === 'gameover') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(300, agora);
+        osc.frequency.linearRampToValueAtTime(100, agora + 0.5);
+        gain.gain.setValueAtTime(0.3, agora);
+        gain.gain.exponentialRampToValueAtTime(0.01, agora + 0.5);
+        osc.start(agora);
+        osc.stop(agora + 0.5);
+    }
+}
+
+function aplicarEfeitoVisual(classe) {
+    cardJogo.classList.remove('efeito-acerto', 'efeito-erro');
+    void cardJogo.offsetWidth;
+    cardJogo.classList.add(classe);
+    setTimeout(() => {
+        cardJogo.classList.remove(classe);
+    }, 350);
+}
 
 const random = (range = 1) => Math.ceil(Math.random() * range);
 
@@ -37,8 +87,56 @@ function checarRecorde() {
     }
 }
 
+function perderVida() {
+    clearTimeout(timerJogo);
+    barraTempo.style.transition = 'none';
+    vidas -= 1;
+
+    aplicarEfeitoVisual('efeito-erro');
+
+    if(normalMode && cont >= 0) {
+        folhas[cont].style.display = 'none';
+        cont--;
+    }
+
+    if(vidas <= 0) {
+        tocarSom('gameover');
+        setTimeout(() => {
+            alert("As folhas acabaram! Nível: " + nivel + "\nResultado: " + resultado);
+            checarRecorde();
+            nivel = 1;
+            cont = 2;
+            vidas = normalMode ? 3 : 1;
+            for(let i = 0; i < 3; i++) {
+                folhas[i].style.display = 'inline';
+            }
+            level.textContent = "Nível " + nivel;
+            gerarNovaQuestao();
+        }, 100);
+    } else {
+        tocarSom('erro');
+        gerarNovaQuestao();
+    }
+}
+
+function iniciarCronometro() {
+    clearTimeout(timerJogo);
+    
+    barraTempo.style.transition = 'none';
+    barraTempo.style.width = '100%';
+    
+    void barraTempo.offsetWidth;
+
+    barraTempo.style.transition = `width ${tempoTotal}s linear`;
+    barraTempo.style.width = '0%';
+
+    timerJogo = setTimeout(() => {
+        perderVida();
+    }, tempoTotal * 1000);
+}
+
 function gerarNovaQuestao() {
-    clearInterval(intervalo);
+    clearTimeout(timerJogo);
 
     if(nivel <= 10) {
         tempoTotal = normalMode ? 10 : 5;
@@ -53,8 +151,8 @@ function gerarNovaQuestao() {
                 break;
             case 2:
                 operacao = '-';
-                while(numero2 > numero1) {
-                    numero2 = random(10);
+                if (numero2 > numero1) {
+                    [numero1, numero2] = [numero2, numero1];
                 }
                 resultado = numero1 - numero2;
                 break;
@@ -112,10 +210,9 @@ function gerarNovaQuestao() {
                 break;
             case 4:
                 operacao = '÷';
-                while(numero1 % numero2 !== 0){
-                    numero2 = random(20);
-                }
-                resultado = numero1 / numero2;
+                numero2 = random(10);
+                resultado = random(10);
+                numero1 = numero2 * resultado;
                 break;
         }
         questao.textContent = `${numero1} ${operacao} ${numero2}`;
@@ -152,13 +249,10 @@ function gerarNovaQuestao() {
                         resultado = numero1 * numero2;
                         break;
                     case 4:
-                        numero1 = random(1000);
-                        numero2 = random(200);
+                        numero2 = random(20);
+                        resultado = random(50);
+                        numero1 = numero2 * resultado;
                         operacao = '÷';
-                        while(numero1 % numero2 !== 0){
-                            numero2 = random(20);
-                        }
-                        resultado = numero1 / numero2;
                         break;
                 }
                 questao.textContent = `${numero1} ${operacao} ${numero2}`;
@@ -216,51 +310,34 @@ function gerarNovaQuestao() {
                     case 1:
                         numero1 = random(20);
                         numero2 = random(20);
-                        operacao = '+';
                         resultado = numero2 - numero1;
                         questao.textContent = `X + ${numero1} = ${numero2}`;
                         break;
                     case 2:
                         numero1 = random(20);
                         numero2 = random(20);
-                        operacao = '-';
                         resultado = numero1 + numero2;
                         questao.textContent = `X - ${numero1} = ${numero2}`;
                         break;
                     case 3:
-                        numero1 = random(20);
-                        numero2 = random(20);
                         numero3 = random(3) + 1;
-                        while((numero2 - numero1) % numero3 !== 0){
-                            numero1 = random(20);
-                            numero2 = random(20);
-                            numero3 = random(3) + 1;
-                        }
-                        resultado = (numero2 - numero1)/numero3;
+                        resultado = random(10) - 5;
+                        numero1 = random(20);
+                        numero2 = numero3 * resultado + numero1;
                         questao.textContent = `${numero3}X + ${numero1} = ${numero2}`;
                         break;
                     case 4:
-                        numero1 = random(20);
                         numero2 = random(3) + 1;
-                        numero3 = random(3) + 1;
-                        while(numero1 % (numero3 - numero2) !== 0){
-                            numero1 = random(20);
-                            numero2 = random(3) + 1;
-                            numero3 = random(3) + 1;
-                        }
-                        resultado = numero1/(numero3 - numero2);
+                        numero3 = numero2 + random(3);
+                        resultado = random(10);
+                        numero1 = (numero3 - numero2) * resultado;
                         questao.textContent = `${numero3}X - ${numero1} = ${numero2}X`;
                         break;
                     case 5:
-                        numero1 = random(20);
                         numero2 = random(3) + 1;
                         numero3 = random(3) + 1;
-                        while(numero1 % (numero3 + numero2) !== 0){
-                            numero1 = random(20);
-                            numero2 = random(3) + 1;
-                            numero3 = random(3) + 1;
-                        }
-                        resultado = numero1/(numero3 + numero2);
+                        resultado = random(10);
+                        numero1 = (numero3 + numero2) * resultado;
                         questao.textContent = `${numero3}X + ${numero2}X = ${numero1}`;
                         break;
                     case 6:
@@ -323,14 +400,11 @@ function gerarNovaQuestao() {
                         questao.textContent = `10^X = ${numero1}`;
                         break;
                     case 16:
-                        numero1 = random(5);
+                        numero1 = random(4) + 1;
                         numero2 = random(5);
                         resultado = numero2 - 1;
-                        questao.textContent = ``;
-                        for(let i = 0; i < numero1; i++) {
-                            questao.textContent += `${numero1}^X + `;
-                        }
-                        questao.textContent += `= ${numero1}^${numero2}`;
+                        let termos = Array(numero1).fill(`${numero1}^X`).join(' + ');
+                        questao.textContent = `${termos} = ${numero1}^${numero2}`;
                         break;
                 }
             break;
@@ -374,77 +448,25 @@ function gerarNovaQuestao() {
         }
     }
 
-    contador = tempoTotal;
-    
-    barraTempo.style.transition = 'none';
-    barraTempo.style.width = '100%';
-    
-    setTimeout(() => {
-        barraTempo.style.transition = `width ${tempoTotal}s linear`;
-        barraTempo.style.width = '0%';
-    }, 10);
-
-    intervalo = setInterval(() => {
-        contador -= 1;
-        
-        if(contador <= 0) {
-            clearInterval(intervalo);
-            setTimeout(() => {
-
-                vidas -= 1;
-                folhas[cont].style.display = 'none';
-                cont--;
-
-                if(vidas === 0){
-                    alert("As folhas acabaram! Nível: " + nivel + "\nResultado: " + resultado);
-                    checarRecorde();
-                    nivel = 1;
-                    cont = 2;
-                    for(let i = 0; i < 3; i++) {
-                        folhas[i].style.display = 'inline';
-                    }
-                    level.textContent = "Nível " + nivel;
-                    gerarNovaQuestao();
-                } else {
-                    checarRecorde();
-                    nivel++;
-                    level.textContent = "Nível " + nivel;
-                    gerarNovaQuestao();
-                }
-            }, 100); 
-        }
-    }, 1000);
+    iniciarCronometro();
 }
 
 formulario.addEventListener('submit', function(event) {
     event.preventDefault();
 
+    if (resposta.value.trim() === '') return;
+
     const respostaDoJogador = Number(resposta.value);
 
     if(respostaDoJogador === resultado) {
+        tocarSom('acerto');
+        aplicarEfeitoVisual('efeito-acerto');
         nivel += 1;
+        checarRecorde();
         level.textContent = "Nível " + nivel;
         gerarNovaQuestao(); 
     } else {
-        vidas -= 1;
-        folhas[cont].style.display = 'none';
-        cont--;
-        if(vidas === 0){
-            alert("As folhas acabaram! Nível: " + nivel + "\nResultado: " + resultado);
-            checarRecorde();
-            nivel = 1;
-            cont = 2;
-            for(let i = 0; i < 3; i++) {
-                folhas[i].style.display = 'block';
-            }
-            level.textContent = "Nível " + nivel;
-            gerarNovaQuestao();
-        } else {
-            checarRecorde();
-            nivel++;
-            level.textContent = "Nível " + nivel;
-            gerarNovaQuestao();
-        }
+        perderVida();
     }
 
     formulario.reset();
@@ -457,14 +479,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const normal = document.createElement("div");
     const dificil = document.createElement("div");
 
+    popUp.classList.add("popup-dificuldade");
     normal.classList.add("cardCurso");
     dificil.classList.add("cardCurso");
-
-    normal.style.cursor = 'pointer';
-    dificil.style.cursor = 'pointer';
-
-    normal.style.justifyContent = 'center';
-    dificil.style.justifyContent = 'center';
 
     const h2F = document.createElement("h2");
     h2F.textContent = 'Modo Normal';
@@ -481,22 +498,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     normal.appendChild(pF);
     dificil.appendChild(pD);
-
-    popUp.style.position = 'fixed';
-    popUp.style.top = '50%';
-    popUp.style.left = '50%';
-    popUp.style.transform = 'translate(-50%, -50%)';
-    popUp.style.backgroundColor = '#ffffff';
-    popUp.style.border = '1px solid #e2e8f0';
-    popUp.style.width = '500px';
-    popUp.style.padding = '2rem';
-    popUp.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
-    popUp.style.borderRadius = '0.5rem';
-    popUp.style.display = 'flex';
-    popUp.style.justifyContent = 'center';
-    popUp.style.alignItems = 'center'
-    popUp.style.gap = '1.25rem';
-    popUp.style.zIndex = '2000';
 
     popUp.appendChild(normal);
     popUp.appendChild(dificil);
@@ -515,6 +516,7 @@ document.addEventListener("DOMContentLoaded", () => {
     dificil.addEventListener('click', () => {
         popUp.style.display = 'none';
         barraVidas.style.display = 'none';
+        normalMode = false;
         vidas = 1;
 
         gerarNovaQuestao();

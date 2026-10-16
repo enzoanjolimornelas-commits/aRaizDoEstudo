@@ -37,7 +37,10 @@
             </div>
             <p id="questao"></p>
             <form id="formulario">
-                <input type="text" inputmode="numeric" pattern="-?[0-9]*" id="resposta" autocomplete="off" required>
+                <div class="input-container">
+                    <button type="button" id="btn-menos" title="Inverter sinal">+/-</button>
+                    <input type="text" inputmode="numeric" pattern="-?[0-9]*" id="resposta" autocomplete="off" required>
+                </div>
                 <button type="submit">Responder</button>
             </form>
         </div>
