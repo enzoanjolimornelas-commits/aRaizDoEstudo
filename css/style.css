@@ -299,31 +299,54 @@ a {
     padding: 0.8em;
 }
 
-.popup-dificuldade {
+.modal-dificuldade-overlay {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3500;
+}
+
+.popup-dificuldade {
+    background: linear-gradient(180deg, #3A5A40 0%, #344E41 100%);
+    border: 3px solid #A3B18A;
     width: 90%;
-    max-width: 500px;
-    padding: 1.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-    border-radius: 0.5rem;
+    max-width: 520px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    box-sizing: border-box;
+}
+
+.popup-dificuldade-titulo {
+    color: #F5F5DC;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.popup-dificuldade-opcoes {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     gap: 1rem;
-    z-index: 2000;
-    box-sizing: border-box;
+    width: 100%;
 }
 
 .popup-dificuldade .cardCurso {
     height: auto;
     min-height: 10rem;
-    padding: 1rem;
+    padding: 1.2rem 1rem;
     justify-content: center;
     cursor: pointer;
     flex: 1;
@@ -568,6 +591,62 @@ body.modo-daltonico .tecla-enviar {
     border-color: #0F203E !important;
 }
 
+#container-geometria {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 260px;
+    margin: -0.5rem auto;
+}
+
+#container-geometria svg {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    overflow: visible;
+}
+
+.svg-forma {
+    fill: rgba(163, 177, 138, 0.2);
+    stroke: #F5F5DC;
+    stroke-width: 3;
+    stroke-linejoin: round;
+}
+
+.svg-linha-aux {
+    stroke: #E29578;
+    stroke-width: 2.5;
+    stroke-dasharray: 4, 4;
+}
+
+.svg-texto {
+    fill: #F5F5DC;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: inherit;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+.svg-texto-fundo {
+    fill: #3E2723;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: inherit;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+body.modo-daltonico .svg-forma {
+    fill: rgba(0, 114, 178, 0.25) !important;
+    stroke: #FFFFFF !important;
+}
+
+body.modo-daltonico .svg-linha-aux {
+    stroke: #FFB000 !important;
+}
+
 @media (max-width: 768px) {
     body {
         display: flex;
@@ -697,17 +776,24 @@ body.modo-daltonico .tecla-enviar {
 
 @media (max-width: 600px) {
     .popup-dificuldade {
-        flex-direction: column;
         width: 92%;
-        padding: 1.2rem;
-        gap: 0.8rem;
-        max-height: 85vh;
+        padding: 1.4rem 1.2rem;
+        max-height: 90vh;
         overflow-y: auto;
+    }
+
+    .popup-dificuldade-titulo {
+        font-size: 1.35rem;
+    }
+
+    .popup-dificuldade-opcoes {
+        flex-direction: column;
+        gap: 0.8rem;
     }
 
     .popup-dificuldade .cardCurso {
         width: 100%;
-        min-height: 7rem;
+        min-height: 6.5rem;
         padding: 1rem;
         gap: 0.4rem;
     }
