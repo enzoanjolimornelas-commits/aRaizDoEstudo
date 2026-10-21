@@ -96,7 +96,7 @@ button:hover {
 main {
     display: flex;
     justify-content: center;
-    min-height: 100vh;
+    margin: 2em;
     background-color: #E8F1E1;
 }
 
@@ -107,23 +107,14 @@ main {
     padding: 2em;
 }
 
-#cursos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2em;
-    margin: 3em 2em;
-    width: 100%;
-    max-width: 1300px;
-}
-
-.cardCurso, .cardGrandeCurso{
+.velocidade{
     display: flex;
     border: 2px solid #3E2723;
     border-radius: 12px 12px 4px 4px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     width: 100%;
     max-width: 22rem;
-    height: 32rem;
+    height: 3rem;
     flex-direction: column;
     gap: 1.5em;
     align-items: center;
@@ -136,7 +127,7 @@ main {
     margin: 0 auto;
 }
 
-.cardGrandeCurso {
+.velocidade {
     max-width: 80vw;
     height: 48rem;
     flex-direction: row;
@@ -146,7 +137,7 @@ main {
     margin: 2em auto;
 }
 
-.cardCurso h2, .cardCurso p, .cardGrandeCurso h2, .cardGrandeCurso p{
+.velocidade h2, .velocidade p{
     color: #F5F5DC;
 }
 
@@ -154,7 +145,7 @@ main {
     font-size: 1.6rem;
 }
 
-.cardGrandeCurso {
+.velocidade {
     font-size: 2.4rem;
 }
 
@@ -165,7 +156,7 @@ main {
     object-fit: cover;
 }
 
-.cardCurso:hover, .cardGrandeCurso:hover{
+.cardCurso:hover, .velocidade:hover{
     transform: translateY(-8px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
 }
@@ -175,7 +166,7 @@ main {
     width: 100%;
 }
 
-.cardCurso button:hover, .cardGrandeCurso button:hover{
+.cardCurso button:hover, .velocidade button:hover{
     box-shadow: 0 0 0 4px #588157;
 }
 
@@ -236,7 +227,7 @@ a {
     width: 100%;
 }
 
-#velocidade .cardGrandeCurso {
+#velocidade .velocidade {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -250,7 +241,7 @@ a {
     cursor: default;
 }
 
-#velocidade .cardGrandeCurso:hover {
+#velocidade .velocidade:hover {
     transform: none;
 }
 
@@ -698,7 +689,7 @@ body.modo-daltonico .svg-linha-aux {
         width: 32px;
     }
 
-    .cardGrandeCurso {
+    .velocidade {
         flex-direction: column;
         height: auto;
         gap: 1.2rem;
@@ -707,7 +698,7 @@ body.modo-daltonico .svg-linha-aux {
         font-size: 1.6rem;
     }
 
-    .cardGrandeCurso img {
+    .velocidade img {
         width: 5em;
     }
 
@@ -715,7 +706,7 @@ body.modo-daltonico .svg-linha-aux {
         padding: 0.5rem;
     }
 
-    #velocidade .cardGrandeCurso {
+    #velocidade .velocidade {
         min-height: auto;
         gap: 1rem;
         padding: 1.2rem 1rem;
