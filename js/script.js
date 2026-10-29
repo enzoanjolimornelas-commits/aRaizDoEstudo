@@ -26,6 +26,32 @@ function trocarFrase () {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    const seletorDaltonismo = document.createElement('select');
+    seletorDaltonismo.id = 'seletor-daltonismo';
+    seletorDaltonismo.innerHTML = `
+        <option value="padrao">Cores Padrão</option>
+        <option value="acessivel">Daltonismo (Alto Contraste)</option>
+    `;
+    seletorDaltonismo.addEventListener('change', (e) => {
+        if (e.target.value === 'acessivel') {
+            document.body.classList.add('modo-daltonico');
+        } else {
+            document.body.classList.remove('modo-daltonico');
+        }
+    });
+
+    const headerElement = document.querySelector('header');
+    if (headerElement) {
+        let headerDiv = headerElement.querySelector('div');
+        if (!headerDiv) {
+            headerDiv = document.createElement('div');
+            headerElement.appendChild(headerDiv);
+        }
+        headerDiv.innerHTML = '';
+        headerDiv.appendChild(seletorDaltonismo);
+    }
+
     trocarFrase();
     
     setInterval(() => {

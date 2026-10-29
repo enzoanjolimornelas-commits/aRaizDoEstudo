@@ -141,6 +141,15 @@ main {
     color: #F5F5DC;
 }
 
+.cardCurso {
+    background-color: #3E2723;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem;
+    border-radius: 12px 12px 4px 4px;
+}
+
 .cardCurso h2 {
     font-size: 1.6rem;
 }
