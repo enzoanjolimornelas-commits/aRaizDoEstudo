@@ -109,7 +109,7 @@ main {
 
 .velocidade{
     display: flex;
-    border: 2px solid #3E2723;
+    border: 8px solid rgb(44, 29, 20);
     border-radius: 12px 12px 4px 4px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     width: 100%;
@@ -123,7 +123,6 @@ main {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
     background: linear-gradient(180deg, #6D4C41 0%, #4E342E 100%);
-    border-bottom: 8px solid #3E2723;
     margin: 0 auto;
 }
 
@@ -563,9 +562,18 @@ a {
     cursor: pointer;
 }
 
+body.modo-daltonico #seletor-daltonismo {
+    border: 2px solid #0072B2;
+}
+
+body.modo-daltonico #pesquisar {
+    border: 2px solid #0072B2;
+}
+
 body.modo-daltonico {
     background-color: #F0F4F8 !important;
 }
+
 
 body.modo-daltonico header {
     background-color: #1B365D !important;
@@ -589,6 +597,15 @@ body.modo-daltonico .efeito-erro {
 body.modo-daltonico .tecla-enviar {
     background-color: #0072B2 !important;
     border-color: #0F203E !important;
+}
+
+body.modo-daltonico #sobre {
+    background-color: #0072B2 !important;
+    border-color: #0F203E !important;
+    
+    h2, p{
+        color: #0F203E !important;
+    }
 }
 
 #container-geometria {
@@ -805,29 +822,21 @@ body.modo-daltonico .svg-linha-aux {
     .popup-dificuldade p {
         font-size: 0.9rem;
     }
+
 }
 
-@media (max-width: 480px) {
-    .logo h1 {
-        font-size: 1.15rem;
-    }
 
-    #questao {
-        font-size: 1.5rem;
-        word-spacing: 0.25em !important;
-    }
-
-    #formulario button {
-        padding: 0.6em;
-        font-size: 1.1rem;
-    }
-}
 
 .main-arvore {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
     text-align: center;
+    padding: 1rem;
+}
+
+body.modo-daltonico main{
+    background-color: #38517446 !important;
 }
 
 .arvore-modulos {
@@ -852,6 +861,7 @@ body.modo-daltonico .svg-linha-aux {
     display: block;
     border-radius: 16px;
     mix-blend-mode: multiply;
+    z-index: 10000;
 }
 
 .no-raiz {
@@ -992,6 +1002,10 @@ body.modo-daltonico .acoes-no-raiz a {
     background-color: #0072B2 !important;
 }
 
+body.modo-daltonico footer {
+    border-color: #0072B2 !important;
+}
+
 @media (max-width: 600px) {
     .circulo-modulo {
         width: 52px;
@@ -1012,5 +1026,44 @@ body.modo-daltonico .acoes-no-raiz a {
     .opcao-exercicios-circulo svg {
         width: 12px;
         height: 12px;
+    }
+
+    .arvore-imagem {
+        max-width: 100%;
+        height: 450px;
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.15rem;
+    }
+
+    #questao {
+        font-size: 1.5rem;
+        word-spacing: 0.25em !important;
+    }
+
+    #formulario button {
+        padding: 0.6em;
+        font-size: 1.1rem;
+    }
+
+    .arvore-imagem {
+        max-width: 100%;
+        height: 450px;
+        display: block;
+    }
+    #sobre {
+        display: none;
+    }
+}
+
+@media (max-width: 1280px) {
+    .arvore-imagem {
+        max-width: 100%;
+        height: 450px;
+        display: block;
     }
 }

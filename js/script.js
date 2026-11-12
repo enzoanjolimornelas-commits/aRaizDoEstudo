@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     seletorDaltonismo.setAttribute('aria-label', 'Modo de cores e daltonismo');
     seletorDaltonismo.innerHTML = `
         <option value="padrao">Cores Padrão</option>
-        <option value="acessivel">Daltonismo (Alto Contraste)</option>
+        <option value="acessivel">Deuteranopia</option>
     `;
 
     const modoSalvo = localStorage.getItem('modoDaltonismo');
