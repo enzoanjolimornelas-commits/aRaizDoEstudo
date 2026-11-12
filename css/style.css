@@ -831,7 +831,8 @@ body.modo-daltonico .svg-linha-aux {
 }
 
 .arvore-modulos {
-    width: 100%;
+    width: 70%;
+    height: 70%;
     max-width: 820px;
     display: flex;
     justify-content: center;
@@ -846,7 +847,7 @@ body.modo-daltonico .svg-linha-aux {
 }
 
 .arvore-imagem {
-    width: 100%;
+    width: 50rem;
     height: auto;
     display: block;
     border-radius: 16px;
@@ -946,7 +947,7 @@ body.modo-daltonico .svg-linha-aux {
     display: flex;
     flex-direction: column;
     gap: 0.45rem;
-    z-index: 30;
+    z-index: 1000;
 }
 
 .no-raiz:hover .rotulo-no-raiz,
