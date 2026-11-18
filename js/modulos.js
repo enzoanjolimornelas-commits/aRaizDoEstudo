@@ -33,21 +33,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const paginas = Array.from(document.querySelectorAll('.pagina'));
     let paginaAtual = 0;
 
+    function salvarNoLocalStorage() {
+        localStorage.setItem("progresso", JSON.stringify(paginaAtual));
+    }
+
+    function carregarDoLocalStorage() {
+        const salvo = JSON.parse(localStorage.getItem("progresso"));
+
+        if (salvo !== null && !isNaN(salvo) && salvo >= 0 && salvo < paginas.length) {
+            paginaAtual = Number(salvo);
+        }
+    }
+
+    carregarDoLocalStorage();
+    atualizarPagina();
+
     function atualizarPagina() {
+
         paginas.forEach((pagina, index) => {
             pagina.classList.toggle('ativa', index === paginaAtual);
         });
-
-        if (btnVoltar) {
-            btnVoltar.disabled = paginaAtual === 0;
-        }
     }
 
     if (btnVoltar) {
         btnVoltar.addEventListener('click', () => {
             if (paginaAtual > 0) {
                 paginaAtual--;
+                salvarNoLocalStorage();
                 atualizarPagina();
+                if(paginaAtual === 0) {
+                    btnVoltar.style.display = 'none';
+                }
+                if(paginaAtual !== paginas.length - 1) {
+                    btnAvancar.style.display = 'block';
+                }
             }
         });
     }
@@ -56,7 +75,14 @@ document.addEventListener('DOMContentLoaded', () => {
         btnAvancar.addEventListener('click', () => {
             if (paginaAtual < paginas.length - 1) {
                 paginaAtual++;
+                salvarNoLocalStorage();
                 atualizarPagina();
+                if(paginaAtual > 0) {
+                    btnVoltar.style.display = 'block';
+                }
+                if(paginaAtual === paginas.length - 1) {
+                    btnAvancar.style.display = 'none';
+                }
             }
         });
     }
