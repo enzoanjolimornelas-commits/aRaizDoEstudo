@@ -1,3 +1,5 @@
+@import url('https://googleapis.com');
+
 body.pagina-modulo {
     min-height: 100vh;
     display: flex;
@@ -92,18 +94,101 @@ body.pagina-modulo {
 
 .maquina {
     display: flex;
-    gap: 6rem;
-    background-color: gray;
-    
-    p {
-        color: black;
-        font-size: xx-large;
-    }
+    justify-content: center;
+    gap: 3.5rem;
+    padding: 2.5rem 3.5rem;
+    border-radius: 16px;
+    position: relative;
 
+    /* Textura de latão dourado envelhecido */
+    background: linear-gradient(145deg, #d4af37 0%, #aa7c11 45%, #8a6208 100%);
+    
+    /* Moldura metálica dupla e relevo 3D */
+    border: 6px solid #5c4004;
+    outline: 3px solid #e5c158;
+    outline-offset: -10px;
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.6),
+        inset 0 2px 4px rgba(255, 240, 180, 0.6),
+        inset 0 -4px 8px rgba(45, 30, 0, 0.8);
+
+    /* Parafusos decorativos nos cantos */
+    &::before, &::after {
+        content: '⊕';
+        position: absolute;
+        top: 12px;
+        font-size: 18px;
+        color: #4a3303;
+        text-shadow: 1px 1px 0px rgba(255, 230, 150, 0.5);
+    }
+    &::before { left: 16px; }
+    &::after { right: 16px; }
+
+    /* Cada coluna (.fila) */
     div {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 1rem;
+        background: rgba(50, 32, 0, 0.25);
+        padding: 1rem 1.2rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 223, 128, 0.3);
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Visor mecânico do tambor numérico */
+    p {
+        margin: 0;
+        width: 54px;
+        height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        /* Cilindro de marfim/papel envelhecido */
+        background: linear-gradient(180deg, #8c8270 0%, #f5eedc 25%, #fffdf7 50%, #f5eedc 75%, #7a705e 100%);
+        color: #1a1205;
+        font-family: 'Courier Prime', monospace;
+        font-size: 2.4rem;
+        font-weight: bold;
+        
+        /* Moldura funda da janela da Pascalina */
+        border: 4px solid #3d2902;
+        border-radius: 6px;
+        box-shadow: 
+            inset 0 6px 10px rgba(0, 0, 0, 0.65),
+            inset 0 -6px 10px rgba(0, 0, 0, 0.65),
+            0 2px 3px rgba(255, 230, 150, 0.4);
+        user-select: none;
+    }
+
+    /* Botões/Setas estilo engrenagem/pino metálico */
+    div > img {
+        width: 36px;
+        height: 36px;
+        padding: 6px;
+        cursor: pointer;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #f3d266, #9c6f0c);
+        border: 2px solid #422c02;
+        box-shadow: 
+            0 4px 6px rgba(0, 0, 0, 0.5),
+            inset 0 1px 2px rgba(255, 255, 255, 0.7);
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    div > img:hover {
+        filter: brightness(1.1);
+    }
+
+    /* Efeito mecânico ao clicar (ou ativar pelo teclado) */
+    div > img:active,
+    div > img.ativo {
+        transform: translateY(2px) scale(0.95);
+        box-shadow: 
+            0 1px 2px rgba(0, 0, 0, 0.7),
+            inset 0 2px 4px rgba(0, 0, 0, 0.5);
     }
 }
 

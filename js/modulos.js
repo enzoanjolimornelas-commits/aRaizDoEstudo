@@ -90,4 +90,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (paginas.length > 0) {
         atualizarPagina();
     }
+
+    document.addEventListener('keydown', (evento) => {
+    if (evento.key === 'ArrowRight') {
+        evento.preventDefault();
+          
+        btnAvancar.click();
+    }
+
+    if(evento.key === 'ArrowLeft') {
+        evento.preventDefault();
+
+        btnVoltar.click();
+    }
+});
 });
