@@ -87,18 +87,46 @@ document.addEventListener("DOMContentLoaded", () => {
         modalErro.classList.add('mostrar');
     }
 
+    const MODOS_DALTONISMO = ['deuteranopia', 'protanopia', 'tritanopia', 'alto-contraste'];
+
+    function normalizarModoDaltonismo(valor) {
+        if (valor === 'acessivel') return 'deuteranopia';
+        if (MODOS_DALTONISMO.includes(valor)) return valor;
+        return 'padrao';
+    }
+
+    function aplicarModoDaltonismo(modo) {
+        const modoNormalizado = normalizarModoDaltonismo(modo);
+        document.body.classList.remove(
+            'modo-daltonico',
+            'modo-deuteranopia',
+            'modo-protanopia',
+            'modo-tritanopia',
+            'modo-alto-contraste'
+        );
+        if (modoNormalizado !== 'padrao') {
+            document.body.classList.add('modo-daltonico', `modo-${modoNormalizado}`);
+        }
+        localStorage.setItem('modoDaltonismo', modoNormalizado);
+    }
+
     const seletorDaltonismo = document.createElement('select');
     seletorDaltonismo.id = 'seletor-daltonismo';
+    seletorDaltonismo.setAttribute('aria-label', 'Modo de cores e acessibilidade para daltonismo');
     seletorDaltonismo.innerHTML = `
         <option value="padrao">Cores Padrão</option>
-        <option value="acessivel">Daltonismo (Alto Contraste)</option>
+        <option value="deuteranopia">Deuteranopia (Verde-Vermelho)</option>
+        <option value="protanopia">Protanopia (Vermelho-Verde)</option>
+        <option value="tritanopia">Tritanopia (Azul-Amarelo)</option>
+        <option value="alto-contraste">Alto Contraste</option>
     `;
+
+    const modoSalvo = normalizarModoDaltonismo(localStorage.getItem('modoDaltonismo'));
+    seletorDaltonismo.value = modoSalvo;
+    aplicarModoDaltonismo(modoSalvo);
+
     seletorDaltonismo.addEventListener('change', (e) => {
-        if (e.target.value === 'acessivel') {
-            document.body.classList.add('modo-daltonico');
-        } else {
-            document.body.classList.remove('modo-daltonico');
-        }
+        aplicarModoDaltonismo(e.target.value);
     });
 
     const headerElement = document.querySelector('header');
@@ -751,11 +779,8 @@ document.addEventListener("DOMContentLoaded", () => {
     tituloModal.classList.add("popup-dificuldade-titulo");
     containerOpcoes.classList.add("popup-dificuldade-opcoes");
     
-    normal.classList.add("cardCurso");
-    normal.style.backgroundColor = "#588157";
-    
-    dificil.classList.add("cardCurso");
-    dificil.style.backgroundColor = "#C1121F";
+    normal.classList.add("cardCurso", "card-dificuldade-normal");
+    dificil.classList.add("cardCurso", "card-dificuldade-dificil");
 
     tituloModal.textContent = 'Escolha a Dificuldade';
 

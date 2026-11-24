@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo - A √Raiz do Estudo</title>
+    <title>Módulo 1: Sistema Decimal - A √Raiz do Estudo</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/modulos.css">
     <script src="../js/script.js" defer></script>
@@ -21,94 +21,306 @@
 
     <main class="modulo-main">
         <div class="modulo-quadro" data-paginas="6">
-            <div class="modulo-conteudo">
-                <section class="pagina ativa">
-                    <div class="teoria">
-                        <div class="teoria-texto">
-                            <p>Já reparou que no teclado do seu celular tem 10 números? (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)</p>
-                            <p>Com esses poucos símbolos já é possível escrever sua idade, medir qualquer coisa e descrever o universo!</p>
-                        </div>
-                        <div class="teoria-imagem">
-                            <img src="../img/tecladoNumerico.jpg" alt="Teclado Numérico de um celular de botão, de 0 a 9.">
-                        </div>
-                    </div>
-                </section>
+            <nav class="modulo-abas" role="tablist" aria-label="Etapas do Módulo 1">
+                <button type="button" class="aba-btn ativa" id="aba-btn-teoria" role="tab" aria-selected="true" aria-controls="painel-teoria">
+                    Teoria
+                </button>
+                <button type="button" class="aba-btn" id="aba-btn-exercicios" role="tab" aria-selected="false" aria-controls="painel-exercicios">
+                    Exercícios
+                </button>
+            </nav>
 
-                <section class="pagina">
-                    <div class="teoria">
-                        <div class="teoria-imagem">
-                            <img src="../img/dedos.jpg" alt="A mão de um bebê tocando a de um adulto.">
+            <div id="painel-teoria" class="painel-aba ativo" role="tabpanel" aria-labelledby="aba-btn-teoria">
+                <div class="modulo-conteudo">
+                    <section class="pagina ativa">
+                        <div class="teoria">
+                            <div class="teoria-texto">
+                                <h2>Os 10 Algarismos</h2>
+                                <p>Já reparou que no teclado do seu celular tem 10 números? (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)</p>
+                                <p>Com esses poucos símbolos já é possível escrever sua idade, medir qualquer coisa e descrever o universo!</p>
+                            </div>
+                            <div class="teoria-imagem">
+                                <img src="../img/tecladoNumerico.jpg" alt="Teclado Numérico de um celular de botão, de 0 a 9.">
+                            </div>
                         </div>
-                        <div class="teoria-texto">
-                            <p>A contagem até 10 veio da biologia do corpo humano: o número de dedos!</p>
-                            <p>Mas esta é apenas uma das maneiras de contar números, e o nome é <strong>Sistema Decimal</strong>.</p>
-                        </div>
-                    </div>
-                </section>
+                    </section>
 
-                <section class="pagina" style="height: 25rem; flex-direction: column;">
-                    <div class="teoria-imagem">
-                        <img src="../img/tabela-ordem.jpg" alt="Imagem que descreve a ordem e as classes, da direita para a esquerda.">
-                    </div>
-                    <div class="teoria-texto" style="text-align: center;">
-                        <h2>Ordens e Classes</h2>
-                        <p>No <strong>Sistema Decimal</strong>, a cada dez unidades temos uma dezena (10), e a cada dez dezenas temos uma centena (100), e a cada dez centenas temos um milhar (1000). Estas são as ordens.</p>
-                        <p>A cada três zeros, partimos para a próxima classe e assim em diante.</p>
-                    </div>
-                </section>
+                    <section class="pagina">
+                        <div class="teoria">
+                            <div class="teoria-imagem">
+                                <img src="../img/dedos.jpg" alt="A mão de um bebê tocando a de um adulto.">
+                            </div>
+                            <div class="teoria-texto">
+                                <h2>Por que contamos de 10 em 10?</h2>
+                                <p>A contagem até 10 veio da biologia do corpo humano: o número de dedos das nossas mãos!</p>
+                                <p>Mas esta é apenas uma das maneiras de contar números, e o nome é <strong>Sistema Decimal</strong> (ou base 10).</p>
+                            </div>
+                        </div>
+                    </section>
 
-                <section class="pagina">
-                    <div class="teoria">
-                        <div class="teoria-texto">
-                            <h2>Pascalina</h2>
-                            <p>
-                                A Pascalina foi a primeira calculadora mecânica do mundo, inventada pelo matemático e filósofo francês Blaise Pascal no século XVII. Esta máquina revolucionária foi projetada para realizar operações matemáticas simples, como adição e subtração no <strong>Sistema Decimal</strong>, de forma mais eficiente e rápida do que os métodos tradicionais.
-                            </p>
+                    <section class="pagina">
+                        <div class="teoria teoria-vertical">
+                            <div class="teoria-imagem">
+                                <img src="../img/tabela-ordem.jpg" alt="Imagem que descreve a ordem e as classes, da direita para a esquerda.">
+                            </div>
+                            <div class="teoria-texto" style="text-align: center;">
+                                <h2>Ordens e Classes</h2>
+                                <p>No <strong>Sistema Decimal</strong>, contamos as posições da <strong>direita para a esquerda</strong>: a cada dez unidades temos uma dezena (10), a cada dez dezenas temos uma centena (100), e a cada dez centenas temos um milhar (1.000). Estas são as <strong>ordens</strong>.</p>
+                                <p>A cada grupo de <strong>três ordens</strong>, partimos para a próxima <strong>classe</strong> (Classe das Unidades Simples, Classe dos Milhares, Classe dos Milhões, Classe dos Bilhões...).</p>
+                            </div>
                         </div>
-                        <div class="teoria-imagem">
-                            <img src="../img/calculadoraPascal.jpg" alt="Imagem da Pascalina, primeira calucladora mecânica feita por Pascal.">
-                        </div>
-                    </div>
-                </section>
+                    </section>
 
-                <section class="pagina">
-                    <div class="teoria">
-                        <div class="teoria-imagem">
-                            <img src="../img/blaisePascal.jpg" alt="Blaise Pascal, matemático e filósofo.">
-                            <label>Blaise Pascal, matemático e filósofo.</label>
+                    <section class="pagina">
+                        <div class="teoria">
+                            <div class="teoria-texto">
+                                <h2>A Pascalina</h2>
+                                <p>
+                                    A Pascalina foi a primeira calculadora mecânica do mundo, inventada pelo matemático e filósofo francês Blaise Pascal no século XVII. Esta máquina revolucionária foi projetada para realizar operações matemáticas simples, como adição e subtração no <strong>Sistema Decimal</strong>, de forma mais eficiente e rápida do que os métodos tradicionais.
+                                </p>
+                            </div>
+                            <div class="teoria-imagem">
+                                <img src="../img/calculadoraPascal.jpg" alt="Imagem da Pascalina, primeira calculadora mecânica feita por Pascal.">
+                            </div>
                         </div>
-                        <div class="teoria-texto">
-                            <p>
-                                Adiante, temos uma simulação de uma Pascalina.
-                            </p>
-                        </div>
-                    </div>
-                </section>
+                    </section>
 
-                <section class="pagina">
-                    <div class="interacao maquina">
-                        <div class="fila">
-                            <img src="../img/setaPraCima.png" alt="Seta para cima, para aumentar em um tal ordem.">
-                            <p>0</p>
-                            <img src="../img/setaPraBaixo.png" alt="Seta para baixo, para diminuir em um tal ordem.">
+                    <section class="pagina">
+                        <div class="teoria">
+                            <div class="teoria-imagem">
+                                <img src="../img/blaisePascal.jpg" alt="Blaise Pascal, matemático e filósofo.">
+                                <label>Blaise Pascal, matemático e filósofo.</label>
+                            </div>
+                            <div class="teoria-texto">
+                                <h2>Como funcionam as engrenagens?</h2>
+                                <p>
+                                    Dentro da Pascalina, cada roda dentada representa uma <strong>ordem</strong>. Quando uma roda completa 10 passos (de 9 para 0), um pino empurra automaticamente a roda vizinha à esquerda em <strong>+1</strong> (o famoso <em>"vai um"</em>)!
+                                </p>
+                                <p>
+                                    Na próxima página, experimente nossa simulação interativa da Pascalina explicando ludicamente <strong>Classes</strong> e <strong>Ordens</strong>!
+                                </p>
+                            </div>
                         </div>
-                        <div class="fila">
-                            <img src="../img/setaPraCima.png" alt="Seta para cima, para aumentar em um tal ordem.">
-                            <p>0</p>
-                            <img src="../img/setaPraBaixo.png" alt="Seta para baixo, para diminuir em um tal ordem.">
+                    </section>
+
+                    <section class="pagina">
+                        <div class="pascalina-secao">
+                            <div class="pascalina-cabecalho">
+                                <h2>A Pascalina — Classes e Ordens</h2>
+                                <p>Clique nas setas para girar as rodas da máquina e passe o mouse (ou clique) nas <strong>Classes</strong> e <strong>Ordens</strong> para ver o que cada uma significa!</p>
+                            </div>
+
+                            <div class="interacao">
+                                <div class="maquina" id="pascalina-teoria" aria-label="Pascalina com 2 classes e 6 ordens">
+                                    <div class="grupo-classe" data-classe="2">
+                                        <button type="button" class="badge-classe" data-classe-info="2" aria-label="Informações sobre a 2ª Classe: Classe dos Milhares">
+                                            2ª Classe: Milhares
+                                        </button>
+                                        <div class="popup-pascalina-card popup-classe">
+                                            <strong>2ª Classe — Milhares</strong>
+                                            <span>Agrupa a 4ª, 5ª e 6ª ordens (de 1.000 até 999.000). Começa após o primeiro grupo de três ordens!</span>
+                                        </div>
+
+                                        <div class="filas-classe">
+                                            <div class="fila" data-ordem="6" data-nome-ordem="Centena de Milhar" data-sigla="CM" data-fator="100000" data-classe-nome="2ª Classe (Milhares)">
+                                                <button type="button" class="badge-ordem" aria-label="6ª Ordem: Centena de Milhar">6ª Ord.</button>
+                                                <div class="popup-pascalina-card popup-ordem">
+                                                    <strong>6ª Ordem: Centena de Milhar (CM)</strong>
+                                                    <span class="popup-ordem-detalhe">Cada unidade aqui vale 100.000 (10 dezenas de milhar).</span>
+                                                </div>
+                                                <img src="../img/setaPraCima.png" alt="Aumentar 6ª ordem (Centena de Milhar)" class="seta-cima" role="button" tabindex="0">
+                                                <p>0</p>
+                                                <img src="../img/setaPraBaixo.png" alt="Diminuir 6ª ordem (Centena de Milhar)" class="seta-baixo" role="button" tabindex="0">
+                                                <span class="sigla-ordem">CM</span>
+                                            </div>
+
+                                            <div class="fila" data-ordem="5" data-nome-ordem="Dezena de Milhar" data-sigla="DM" data-fator="10000" data-classe-nome="2ª Classe (Milhares)">
+                                                <button type="button" class="badge-ordem" aria-label="5ª Ordem: Dezena de Milhar">5ª Ord.</button>
+                                                <div class="popup-pascalina-card popup-ordem">
+                                                    <strong>5ª Ordem: Dezena de Milhar (DM)</strong>
+                                                    <span class="popup-ordem-detalhe">Cada unidade aqui vale 10.000 (10 unidades de milhar).</span>
+                                                </div>
+                                                <img src="../img/setaPraCima.png" alt="Aumentar 5ª ordem (Dezena de Milhar)" class="seta-cima" role="button" tabindex="0">
+                                                <p>0</p>
+                                                <img src="../img/setaPraBaixo.png" alt="Diminuir 5ª ordem (Dezena de Milhar)" class="seta-baixo" role="button" tabindex="0">
+                                                <span class="sigla-ordem">DM</span>
+                                            </div>
+
+                                            <div class="fila" data-ordem="4" data-nome-ordem="Unidade de Milhar" data-sigla="UM" data-fator="1000" data-classe-nome="2ª Classe (Milhares)">
+                                                <button type="button" class="badge-ordem" aria-label="4ª Ordem: Unidade de Milhar">4ª Ord.</button>
+                                                <div class="popup-pascalina-card popup-ordem">
+                                                    <strong>4ª Ordem: Unidade de Milhar (UM)</strong>
+                                                    <span class="popup-ordem-detalhe">Cada unidade aqui vale 1.000 (10 centenas). Abre a Classe dos Milhares!</span>
+                                                </div>
+                                                <img src="../img/setaPraCima.png" alt="Aumentar 4ª ordem (Unidade de Milhar)" class="seta-cima" role="button" tabindex="0">
+                                                <p>0</p>
+                                                <img src="../img/setaPraBaixo.png" alt="Diminuir 4ª ordem (Unidade de Milhar)" class="seta-baixo" role="button" tabindex="0">
+                                                <span class="sigla-ordem">UM</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="separador-classes" aria-hidden="true" title="Separador entre a Classe dos Milhares e a Classe das Unidades Simples">.</div>
+
+                                    <div class="grupo-classe" data-classe="1">
+                                        <button type="button" class="badge-classe" data-classe-info="1" aria-label="Informações sobre a 1ª Classe: Classe das Unidades Simples">
+                                            1ª Classe: Unidades Simples
+                                        </button>
+                                        <div class="popup-pascalina-card popup-classe">
+                                            <strong>1ª Classe — Unidades Simples</strong>
+                                            <span>Reúne as 3 primeiras ordens da direita para a esquerda: Unidade (1ª), Dezena (2ª) e Centena (3ª), de 0 a 999!</span>
+                                        </div>
+
+                                        <div class="filas-classe">
+                                            <div class="fila" data-ordem="3" data-nome-ordem="Centena" data-sigla="C" data-fator="100" data-classe-nome="1ª Classe (Unidades Simples)">
+                                                <button type="button" class="badge-ordem" aria-label="3ª Ordem: Centena">3ª Ord.</button>
+                                                <div class="popup-pascalina-card popup-ordem">
+                                                    <strong>3ª Ordem: Centenas (C)</strong>
+                                                    <span class="popup-ordem-detalhe">Cada unidade aqui vale 100 (10 dezenas). Ao juntar 10 centenas, vai 1 para o Milhar!</span>
+                                                </div>
+                                                <img src="../img/setaPraCima.png" alt="Aumentar 3ª ordem (Centena)" class="seta-cima" role="button" tabindex="0">
+                                                <p>0</p>
+                                                <img src="../img/setaPraBaixo.png" alt="Diminuir 3ª ordem (Centena)" class="seta-baixo" role="button" tabindex="0">
+                                                <span class="sigla-ordem">C</span>
+                                            </div>
+
+                                            <div class="fila" data-ordem="2" data-nome-ordem="Dezena" data-sigla="D" data-fator="10" data-classe-nome="1ª Classe (Unidades Simples)">
+                                                <button type="button" class="badge-ordem" aria-label="2ª Ordem: Dezena">2ª Ord.</button>
+                                                <div class="popup-pascalina-card popup-ordem">
+                                                    <strong>2ª Ordem: Dezenas (D)</strong>
+                                                    <span class="popup-ordem-detalhe">Cada unidade aqui vale 10 (10 unidades). Ao juntar 10 dezenas, vai 1 para a Centena!</span>
+                                                </div>
+                                                <img src="../img/setaPraCima.png" alt="Aumentar 2ª ordem (Dezena)" class="seta-cima" role="button" tabindex="0">
+                                                <p>0</p>
+                                                <img src="../img/setaPraBaixo.png" alt="Diminuir 2ª ordem (Dezena)" class="seta-baixo" role="button" tabindex="0">
+                                                <span class="sigla-ordem">D</span>
+                                            </div>
+
+                                            <div class="fila" data-ordem="1" data-nome-ordem="Unidade" data-sigla="U" data-fator="1" data-classe-nome="1ª Classe (Unidades Simples)">
+                                                <button type="button" class="badge-ordem" aria-label="1ª Ordem: Unidade">1ª Ord.</button>
+                                                <div class="popup-pascalina-card popup-ordem">
+                                                    <strong>1ª Ordem: Unidades (U)</strong>
+                                                    <span class="popup-ordem-detalhe">A 1ª ordem começa na direita! Cada passo vale 1. Ao chegar em 10, gira para 0 e empurra +1 na Dezena!</span>
+                                                </div>
+                                                <img src="../img/setaPraCima.png" alt="Aumentar 1ª ordem (Unidade)" class="seta-cima" role="button" tabindex="0">
+                                                <p>0</p>
+                                                <img src="../img/setaPraBaixo.png" alt="Diminuir 1ª ordem (Unidade)" class="seta-baixo" role="button" tabindex="0">
+                                                <span class="sigla-ordem">U</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pascalina-painel-info">
+                                <div class="pascalina-visor-geral">
+                                    <span>Valor na Pascalina: <strong id="pascalina-valor-total">0</strong></span>
+                                    <span id="pascalina-decomposicao-texto" class="pascalina-decomposicao">0 Unidades (1ª Classe: Unidades Simples)</span>
+                                </div>
+                                <div class="pascalina-acoes">
+                                    <button type="button" id="btn-zerar-pascalina" class="btn-secundario-modulo">Zerar Pascalina</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="fila">
-                            <img src="../img/setaPraCima.png" alt="Seta para cima, para aumentar em um tal ordem.">
-                            <p>0</p>
-                            <img src="../img/setaPraBaixo.png" alt="Seta para baixo, para diminuir em um tal ordem.">
-                        </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
+
+                <div class="modulo-botoes">
+                    <button type="button" id="btn-voltar">Voltar</button>
+                    <span id="indicador-pagina" class="indicador-pagina">Página 1 de 6</span>
+                    <button type="button" id="btn-avancar">Avançar</button>
+                </div>
             </div>
 
-            <div class="modulo-botoes">
-                <button type="button" id="btn-voltar">Voltar</button>
-                <button type="button" id="btn-avancar">Avançar</button>
+            <div id="painel-exercicios" class="painel-aba" role="tabpanel" aria-labelledby="aba-btn-exercicios">
+                <div class="exercicios-wrapper">
+                    <div class="exercicios-topo">
+                        <div class="exercicios-status">
+                            <span id="exercicio-progresso-texto" class="badge-progresso">Questão 1 de 20</span>
+                            <span id="exercicio-tipo-badge" class="badge-tipo-questao">Troca de Ordem na Pascalina</span>
+                            <span id="exercicio-placar" class="badge-placar">Acertos: 0 / 20</span>
+                        </div>
+                        <div class="exercicios-trilha" id="exercicios-trilha" aria-label="Navegação pelas 20 questões"></div>
+                    </div>
+
+                    <div class="exercicio-card" id="exercicio-card">
+                        <h3 id="exercicio-titulo" class="exercicio-titulo">Questão 1</h3>
+                        <p id="exercicio-enunciado" class="exercicio-enunciado"></p>
+
+                        <div id="exercicio-quadro-visual" class="exercicio-quadro-visual" style="display: none;"></div>
+
+                        <div id="exercicio-pascalina-area" class="exercicio-pascalina-area" style="display: none;">
+                            <div class="exercicio-pascalina-instrucao">
+                                <span id="exercicio-pascalina-dica">Gire as rodas da Pascalina para calcular!</span>
+                                <button type="button" id="btn-resetar-pascalina-ex" class="btn-mini-pascalina">Voltar ao número inicial</button>
+                            </div>
+
+                            <div class="maquina maquina-compacta" id="pascalina-exercicio" aria-label="Pascalina interativa do exercício">
+                                <div class="grupo-classe" data-classe="2">
+                                    <div class="titulo-classe-compacto">2ª Classe: Milhares</div>
+                                    <div class="filas-classe">
+                                        <div class="fila" data-ordem="4" data-nome-ordem="Unidade de Milhar" data-sigla="UM" data-fator="1000">
+                                            <span class="badge-ordem-mini">4ª Ord. (UM)</span>
+                                            <img src="../img/setaPraCima.png" alt="Aumentar 4ª ordem (Unidade de Milhar)" class="seta-cima" role="button" tabindex="0">
+                                            <p>0</p>
+                                            <img src="../img/setaPraBaixo.png" alt="Diminuir 4ª ordem (Unidade de Milhar)" class="seta-baixo" role="button" tabindex="0">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="separador-classes" aria-hidden="true">.</div>
+
+                                <div class="grupo-classe" data-classe="1">
+                                    <div class="titulo-classe-compacto">1ª Classe: Unidades Simples</div>
+                                    <div class="filas-classe">
+                                        <div class="fila" data-ordem="3" data-nome-ordem="Centena" data-sigla="C" data-fator="100">
+                                            <span class="badge-ordem-mini">3ª Ord. (C)</span>
+                                            <img src="../img/setaPraCima.png" alt="Aumentar 3ª ordem (Centena)" class="seta-cima" role="button" tabindex="0">
+                                            <p>0</p>
+                                            <img src="../img/setaPraBaixo.png" alt="Diminuir 3ª ordem (Centena)" class="seta-baixo" role="button" tabindex="0">
+                                        </div>
+                                        <div class="fila" data-ordem="2" data-nome-ordem="Dezena" data-sigla="D" data-fator="10">
+                                            <span class="badge-ordem-mini">2ª Ord. (D)</span>
+                                            <img src="../img/setaPraCima.png" alt="Aumentar 2ª ordem (Dezena)" class="seta-cima" role="button" tabindex="0">
+                                            <p>0</p>
+                                            <img src="../img/setaPraBaixo.png" alt="Diminuir 2ª ordem (Dezena)" class="seta-baixo" role="button" tabindex="0">
+                                        </div>
+                                        <div class="fila" data-ordem="1" data-nome-ordem="Unidade" data-sigla="U" data-fator="1">
+                                            <span class="badge-ordem-mini">1ª Ord. (U)</span>
+                                            <img src="../img/setaPraCima.png" alt="Aumentar 1ª ordem (Unidade)" class="seta-cima" role="button" tabindex="0">
+                                            <p>0</p>
+                                            <img src="../img/setaPraBaixo.png" alt="Diminuir 1ª ordem (Unidade)" class="seta-baixo" role="button" tabindex="0">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pascalina-ex-status">
+                                <span>Número atual na Pascalina: <strong id="pascalina-ex-valor">0</strong></span>
+                                <button type="button" id="btn-responder-pascalina" class="btn-destaque-modulo">Responder com a Pascalina</button>
+                            </div>
+                        </div>
+
+                        <div id="exercicio-input-box" class="exercicio-input-box" style="display: none;">
+                            <label for="exercicio-input-resposta">Digite sua resposta:</label>
+                            <div class="exercicio-input-linha">
+                                <input type="text" id="exercicio-input-resposta" placeholder="Digite o resultado..." autocomplete="off">
+                                <button type="button" id="btn-verificar-input" class="btn-destaque-modulo">Responder</button>
+                            </div>
+                        </div>
+
+                        <div id="exercicio-opcoes" class="exercicio-opcoes" style="display: none;"></div>
+
+                        <div id="exercicio-feedback-inline" class="exercicio-feedback-inline" style="display: none;"></div>
+
+                        <div id="exercicio-resumo-final" class="exercicio-resumo-final" style="display: none;"></div>
+                    </div>
+
+                    <div class="exercicios-rodape">
+                        <button type="button" id="btn-questao-anterior">← Questão Anterior</button>
+                        <button type="button" id="btn-proxima-questao">Próxima Questão →</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

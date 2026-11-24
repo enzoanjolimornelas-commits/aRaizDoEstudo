@@ -26,29 +26,52 @@ function trocarFrase() {
     }
 }
 
+const MODOS_DALTONISMO = ['deuteranopia', 'protanopia', 'tritanopia', 'alto-contraste'];
+
+function normalizarModoDaltonismo(valor) {
+    if (valor === 'acessivel') return 'deuteranopia';
+    if (MODOS_DALTONISMO.includes(valor)) return valor;
+    return 'padrao';
+}
+
+function aplicarModoDaltonismo(modo) {
+    const modoNormalizado = normalizarModoDaltonismo(modo);
+    document.body.classList.remove(
+        'modo-daltonico',
+        'modo-deuteranopia',
+        'modo-protanopia',
+        'modo-tritanopia',
+        'modo-alto-contraste'
+    );
+
+    if (modoNormalizado !== 'padrao') {
+        document.body.classList.add('modo-daltonico', `modo-${modoNormalizado}`);
+    }
+
+    localStorage.setItem('modoDaltonismo', modoNormalizado);
+}
+
+window.aplicarModoDaltonismo = aplicarModoDaltonismo;
+window.normalizarModoDaltonismo = normalizarModoDaltonismo;
+
 document.addEventListener('DOMContentLoaded', () => {
     const seletorDaltonismo = document.createElement('select');
     seletorDaltonismo.id = 'seletor-daltonismo';
-    seletorDaltonismo.setAttribute('aria-label', 'Modo de cores e daltonismo');
+    seletorDaltonismo.setAttribute('aria-label', 'Modo de cores e acessibilidade para daltonismo');
     seletorDaltonismo.innerHTML = `
         <option value="padrao">Cores Padrão</option>
-        <option value="acessivel">Deuteranopia</option>
+        <option value="deuteranopia">Deuteranopia (Verde-Vermelho)</option>
+        <option value="protanopia">Protanopia (Vermelho-Verde)</option>
+        <option value="tritanopia">Tritanopia (Azul-Amarelo)</option>
+        <option value="alto-contraste">Alto Contraste</option>
     `;
 
-    const modoSalvo = localStorage.getItem('modoDaltonismo');
-    if (modoSalvo === 'acessivel') {
-        document.body.classList.add('modo-daltonico');
-        seletorDaltonismo.value = 'acessivel';
-    }
+    const modoSalvo = normalizarModoDaltonismo(localStorage.getItem('modoDaltonismo'));
+    seletorDaltonismo.value = modoSalvo;
+    aplicarModoDaltonismo(modoSalvo);
 
     seletorDaltonismo.addEventListener('change', (e) => {
-        if (e.target.value === 'acessivel') {
-            document.body.classList.add('modo-daltonico');
-            localStorage.setItem('modoDaltonismo', 'acessivel');
-        } else {
-            document.body.classList.remove('modo-daltonico');
-            localStorage.setItem('modoDaltonismo', 'padrao');
-        }
+        aplicarModoDaltonismo(e.target.value);
     });
 
     const headerElement = document.querySelector('header');

@@ -16,30 +16,32 @@
         <div></div>
     </header>
     <aside id="sobre">
-            
     </aside>
     <main class="main-arvore">
-        <h1>Conheça a <span style="color: #3A5A40;">árvore</span> e as suas <span style="color: #3E2723;">raízes</span></h1>
+        <h1>Conheça a <span class="texto-destaque-arvore">árvore</span> e as suas <span class="texto-destaque-raizes">raízes</span></h1>
 
         <section class="arvore-modulos" id="arvore-modulos" aria-label="Árvore de Módulos">
             <div class="arvore-palco">
-                <img src="img/Design sem nome.png" alt="Ilustração de uma árvore frondosa com suas raízes profundas na terra" class="arvore-imagem">
+                <picture class="arvore-picture">
+                    <source media="(max-width: 1024px)" srcset="img/arvore-vertical.png">
+                    <img src="img/Design sem nome.png" alt="Ilustração de uma árvore frondosa com suas raízes profundas na terra" class="arvore-imagem">
+                </picture>
 
-                <div class="no-raiz" style="top: 72%; left: 34%;" data-nome="Módulo Base Fundamentos">
+                <div class="no-raiz no-raiz-1 no-raiz-esquerda" data-nome="Módulo 1 Base Fundamentos Sistema Decimal Classes Ordens Pascalina 1 2 3">
                     <div class="circulo-modulo-wrapper">
-                        <a href="modulos/modulo1.html" class="circulo-modulo" aria-label="Acessar aula do Módulo Base">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                        <a href="modulos/modulo1.html" class="circulo-modulo" aria-label="Acessar aula do Módulo 1: Sistema Decimal">
+                            <svg viewBox="0 0 36 24" aria-hidden="true" class="icone-assunto-largo">
+                                <text x="18" y="16.5" text-anchor="middle" font-family="Georgia, serif" font-size="13.5" font-weight="bold" fill="currentColor">1 2 3</text>
                             </svg>
                         </a>
-                        <a href="modulos/modulo1.html?etapa=exercicios" class="opcao-exercicios-circulo" title="Exercícios do Módulo Base" aria-label="Ir direto para os exercícios do Módulo Base">
+                        <a href="modulos/modulo1.html?etapa=exercicios" class="opcao-exercicios-circulo" title="Exercícios do Módulo 1" aria-label="Ir direto para os exercícios do Módulo 1">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
                             </svg>
                         </a>
                     </div>
                     <div class="rotulo-no-raiz">
-                        <strong>1 2 3...</strong>
+                        <strong>1 2 3... (Sistema Decimal)</strong>
                         <div class="acoes-no-raiz">
                             <a href="modulos/modulo1.html">Teoria</a>
                             <a href="modulos/modulo1.html?etapa=exercicios">Exercícios</a>
@@ -47,11 +49,11 @@
                     </div>
                 </div>
 
-                <div class="no-raiz" style="top: 84%; left: 46%;" data-nome="Módulo 2 Em Breve">
+                <div class="no-raiz no-raiz-2" data-nome="Módulo 2 Soma e Subtração Operações Básicas">
                     <div class="circulo-modulo-wrapper">
-                        <a href="#" class="circulo-modulo" aria-label="Acessar Módulo 2">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                        <a href="modulos/modulo1.html" class="circulo-modulo" aria-label="Acessar Módulo 2: Soma e Subtração">
+                            <svg viewBox="0 0 36 24" aria-hidden="true" class="icone-assunto-largo">
+                                <path d="M9.5 5.5v5h-5v3h5v5h3v-5h5v-3h-5v-5h-3zm12 5v3h10v-3h-10z"/>
                             </svg>
                         </a>
                         <a href="modulos/modulo1.html?etapa=exercicios" class="opcao-exercicios-circulo" title="Exercícios do Módulo 2" aria-label="Ir direto para os exercícios do Módulo 2">
@@ -61,19 +63,19 @@
                         </a>
                     </div>
                     <div class="rotulo-no-raiz">
-                        <strong>Módulo 2</strong>
+                        <strong>Módulo 2: Soma e Subtração</strong>
                         <div class="acoes-no-raiz">
-                            <a href="#">Teoria</a>
-                            <a href="#">Exercícios</a>
+                            <a href="modulos/modulo1.html">Teoria</a>
+                            <a href="modulos/modulo1.html?etapa=exercicios">Exercícios</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="no-raiz" style="top: 75%; left: 64%;" data-nome="Módulo 3 Em Breve">
+                <div class="no-raiz no-raiz-3 no-raiz-direita" data-nome="Módulo 3 Multiplicação e Divisão Tabuada">
                     <div class="circulo-modulo-wrapper">
-                        <a href="modulos/modulo1.html" class="circulo-modulo" aria-label="Acessar Módulo 3">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                        <a href="#arvore-modulos" class="circulo-modulo" aria-label="Acessar Módulo 3: Multiplicação e Divisão">
+                            <svg viewBox="0 0 36 24" aria-hidden="true" class="icone-assunto-largo">
+                                <path d="M6.2 6.3L4.1 8.4 7.7 12l-3.6 3.6 2.1 2.1 3.6-3.6 3.6 3.6 2.1-2.1L11.9 12l3.6-3.6-2.1-2.1-3.6 3.6-3.6-3.6zM21.5 10.5v3h10v-3h-10zm5-4.5a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zm0 8.4a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6z"/>
                             </svg>
                         </a>
                         <a href="modulos/modulo1.html?etapa=exercicios" class="opcao-exercicios-circulo" title="Exercícios do Módulo 3" aria-label="Ir direto para os exercícios do Módulo 3">
@@ -83,10 +85,164 @@
                         </a>
                     </div>
                     <div class="rotulo-no-raiz">
-                        <strong>Módulo 3</strong>
+                        <strong>Módulo 3: Multiplicação e Divisão</strong>
                         <div class="acoes-no-raiz">
-                            <a href="#">Teoria</a>
-                            <a href="#">Exercícios</a>
+                            <a href="#arvore-modulos">Em Breve</a>
+                            <a href="modulos/modulo1.html?etapa=exercicios">Exercícios</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="no-raiz no-raiz-4 no-raiz-esquerda" data-nome="Módulo 4 Expressões Numéricas Ordem das Operações">
+                    <div class="circulo-modulo-wrapper">
+                        <a href="#arvore-modulos" class="circulo-modulo" aria-label="Acessar Módulo 4: Expressões Numéricas">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                            </svg>
+                        </a>
+                        <a href="modulos/modulo1.html?etapa=exercicios" class="opcao-exercicios-circulo" title="Exercícios do Módulo 4" aria-label="Ir direto para os exercícios do Módulo 4">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="rotulo-no-raiz">
+                        <strong>Módulo 4: Expressões</strong>
+                        <div class="acoes-no-raiz">
+                            <a href="#arvore-modulos">Em Breve</a>
+                            <a href="modulos/modulo1.html?etapa=exercicios">Exercícios</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="no-raiz no-raiz-5" data-nome="Módulo 5 Frações e Números Decimais">
+                    <div class="circulo-modulo-wrapper">
+                        <a href="#arvore-modulos" class="circulo-modulo" aria-label="Acessar Módulo 5: Frações e Decimais">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                            </svg>
+                        </a>
+                        <a href="modulos/modulo1.html?etapa=exercicios" class="opcao-exercicios-circulo" title="Exercícios do Módulo 5" aria-label="Ir direto para os exercícios do Módulo 5">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="rotulo-no-raiz">
+                        <strong>Módulo 5: Frações e Decimais</strong>
+                        <div class="acoes-no-raiz">
+                            <a href="#arvore-modulos">Em Breve</a>
+                            <a href="modulos/modulo1.html?etapa=exercicios">Exercícios</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="no-raiz no-raiz-6" data-nome="Módulo 6 Potenciação e Radiciação Raiz Quadrada">
+                    <div class="circulo-modulo-wrapper">
+                        <a href="#arvore-modulos" class="circulo-modulo" aria-label="Acessar Módulo 6: Potências e Raízes">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                            </svg>
+                        </a>
+                        <a href="modulos/modulo1.html?etapa=exercicios" class="opcao-exercicios-circulo" title="Exercícios do Módulo 6" aria-label="Ir direto para os exercícios do Módulo 6">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="rotulo-no-raiz">
+                        <strong>Módulo 6: Potências e Raízes</strong>
+                        <div class="acoes-no-raiz">
+                            <a href="#arvore-modulos">Em Breve</a>
+                            <a href="modulos/modulo1.html?etapa=exercicios">Exercícios</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="no-raiz no-raiz-7 no-raiz-direita" data-nome="Módulo 7 Múltiplos Divisores MMC MDC">
+                    <div class="circulo-modulo-wrapper">
+                        <a href="#arvore-modulos" class="circulo-modulo" aria-label="Acessar Módulo 7: Múltiplos e Divisores">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                            </svg>
+                        </a>
+                        <a href="modulos/modulo1.html?etapa=exercicios" class="opcao-exercicios-circulo" title="Exercícios do Módulo 7" aria-label="Ir direto para os exercícios do Módulo 7">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="rotulo-no-raiz">
+                        <strong>Módulo 7: Múltiplos e Divisores</strong>
+                        <div class="acoes-no-raiz">
+                            <a href="#arvore-modulos">Em Breve</a>
+                            <a href="modulos/modulo1.html?etapa=exercicios">Exercícios</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="no-raiz no-raiz-8 no-raiz-esquerda" data-nome="Módulo 8 Álgebra e Equações do 1º Grau">
+                    <div class="circulo-modulo-wrapper">
+                        <a href="#arvore-modulos" class="circulo-modulo" aria-label="Acessar Módulo 8: Álgebra e Equações">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                            </svg>
+                        </a>
+                        <a href="modulos/modulo1.html?etapa=exercicios" class="opcao-exercicios-circulo" title="Exercícios do Módulo 8" aria-label="Ir direto para os exercícios do Módulo 8">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="rotulo-no-raiz">
+                        <strong>Módulo 8: Álgebra e Equações</strong>
+                        <div class="acoes-no-raiz">
+                            <a href="#arvore-modulos">Em Breve</a>
+                            <a href="modulos/modulo1.html?etapa=exercicios">Exercícios</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="no-raiz no-raiz-9" data-nome="Módulo 9 Geometria Plana Áreas Perímetros Pitágoras">
+                    <div class="circulo-modulo-wrapper">
+                        <a href="#arvore-modulos" class="circulo-modulo" aria-label="Acessar Módulo 9: Geometria Plana">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                            </svg>
+                        </a>
+                        <a href="modulos/modulo1.html?etapa=exercicios" class="opcao-exercicios-circulo" title="Exercícios do Módulo 9" aria-label="Ir direto para os exercícios do Módulo 9">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="rotulo-no-raiz">
+                        <strong>Módulo 9: Geometria Plana</strong>
+                        <div class="acoes-no-raiz">
+                            <a href="#arvore-modulos">Em Breve</a>
+                            <a href="modulos/modulo1.html?etapa=exercicios">Exercícios</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="no-raiz no-raiz-10 no-raiz-direita" data-nome="Módulo 10 Proporção e Porcentagem Regra de Três">
+                    <div class="circulo-modulo-wrapper">
+                        <a href="#arvore-modulos" class="circulo-modulo" aria-label="Acessar Módulo 10: Proporção e Porcentagem">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                            </svg>
+                        </a>
+                        <a href="modulos/modulo1.html?etapa=exercicios" class="opcao-exercicios-circulo" title="Exercícios do Módulo 10" aria-label="Ir direto para os exercícios do Módulo 10">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="rotulo-no-raiz">
+                        <strong>Módulo 10: Porcentagem</strong>
+                        <div class="acoes-no-raiz">
+                            <a href="#arvore-modulos">Em Breve</a>
+                            <a href="modulos/modulo1.html?etapa=exercicios">Exercícios</a>
                         </div>
                     </div>
                 </div>
@@ -102,7 +258,6 @@
         </div>
     </a>
     <footer>
-
     </footer>
 </body>
 </html>
