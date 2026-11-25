@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nome do modulo</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/modulos.css">
+    <script src="../js/script.js" defer></script>
+    <script src="../js/modulos.js" defer></script>
+</head>
+<body class="pagina-modulo">
+    <header>
+        <input type="search" placeholder="Pesquisar ramos, folhas ou raízes..." id="pesquisar">
+        <a href="../index.html" class="logo">
+            <h1>A √Raiz do Estudo</h1>
+        </a>
+        <div></div>
+    </header>
+
+    <main class="modulo-main">
+        <div class="modulo-quadro" data-paginas="1">
+            <nav class="modulo-abas" role="tablist" aria-label="Etapas do Módulo 1">
+                <button type="button" class="aba-btn ativa" id="aba-btn-teoria" role="tab" aria-selected="true" aria-controls="painel-teoria">
+                    Teoria
+                </button>
+                <button type="button" class="aba-btn" id="aba-btn-exercicios" role="tab" aria-selected="false" aria-controls="painel-exercicios">
+                    Exercícios
+                </button>
+            </nav>
+
+            <div id="painel-teoria" class="painel-aba ativo" role="tabpanel" aria-labelledby="aba-btn-teoria">
+                <div class="modulo-conteudo">
+                    <section class="pagina ativa">
+                        <div class="teoria">
+                            <div class="teoria-texto">
+                                <h2>teste</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed similique eius obcaecati nam dolor repellat impedit odio, necessitatibus veniam officia, aliquam quibusdam unde eligendi id quos vero? Vitae, magnam eveniet.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="modulo-botoes">
+                    <button type="button" id="btn-voltar">Voltar</button>
+                    <span id="indicador-pagina" class="indicador-pagina">Página 1 de 6</span>
+                    <button type="button" id="btn-avancar">Avançar</button>
+                </div>
+            </div>
+
+            <div id="painel-exercicios" class="painel-aba" role="tabpanel" aria-labelledby="aba-btn-exercicios">
+                <div class="exercicios-wrapper">
+                    
+
+                    <div class="exercicios-rodape">
+                        <button type="button" id="btn-questao-anterior">← Questão Anterior</button>
+                        <button type="button" id="btn-proxima-questao">Próxima Questão →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

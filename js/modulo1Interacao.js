@@ -558,8 +558,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             enunciado: 'Observe o número <strong>4.729</strong> no quadro abaixo, onde o algarismo <strong>7</strong> está em destaque. <strong>Que ordem é essa</strong> que o algarismo 7 ocupa?',
             opcoes: [
-                '3ª Ordem — Centenas',
                 '2ª Ordem — Dezenas',
+                '3ª Ordem — Centenas',
                 '4ª Ordem — Unidades de Milhar',
                 '1ª Ordem — Unidades'
             ],
@@ -631,10 +631,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             enunciado: 'No número <strong>31.409</strong>, o algarismo <strong>9</strong> está destacado na extrema direita. <strong>Que ordem é essa?</strong>',
             opcoes: [
-                '1ª Ordem — Unidades',
+                '3ª Ordem — Centenas',
                 '5ª Ordem — Dezenas de Milhar',
                 '2ª Ordem — Dezenas',
-                '3ª Ordem — Centenas'
+                '1ª Ordem — Unidades'
             ],
             respostaCorreta: '1ª Ordem — Unidades',
             explicacaoAcerto: 'Isso mesmo! O primeiro algarismo da direita é sempre a 1ª Ordem (Unidades)!',
@@ -736,9 +736,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             enunciado: 'No número <strong>27.504.890</strong>, o grupo <strong>27</strong> está em destaque. <strong>Que classe é essa?</strong>',
             opcoes: [
-                '3ª Classe — Classe dos Milhões',
-                '2ª Classe — Classe dos Milhares',
                 '4ª Classe — Classe dos Bilhões',
+                '2ª Classe — Classe dos Milhares',
+                '3ª Classe — Classe dos Milhões',
                 '1ª Classe — Classe das Unidades Simples'
             ],
             respostaCorreta: '3ª Classe — Classe dos Milhões',
