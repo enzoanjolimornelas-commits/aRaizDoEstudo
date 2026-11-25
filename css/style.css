@@ -205,8 +205,12 @@ footer {
     background-color: #3E2723;
     margin-top: 5em;
     width: 100%;
-    height: 15em;
+    min-height: 10em;
     border-top: 8px solid #3A5A40;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
 }
 
 a {
@@ -1052,14 +1056,46 @@ body.modo-daltonico .svg-linha-aux {
     header {
         position: relative;
         flex-direction: row;
+        flex-wrap: wrap;
         justify-content: space-between;
-        padding: 0.6rem 1rem;
-        gap: 0.5rem;
+        padding: 0.55rem 0.85rem;
+        gap: 0.45rem;
         border-bottom: 3px solid #344E41;
     }
 
     #pesquisar {
+        order: 3;
+        width: 100%;
+        height: 2.3rem;
+        font-size: 0.88rem;
+    }
+
+    body.pagina-modulo #pesquisar,
+    #velocidade ~ header #pesquisar {
         display: none;
+    }
+
+    .modal-erro-overlay {
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    .modal-erro-conteudo {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 20px 20px 0 0;
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+        padding: 1.25rem 1.1rem calc(1.35rem + env(safe-area-inset-bottom, 0px));
+        margin: 0;
+    }
+
+    #modal-btn-continuar {
+        width: 100%;
+        padding: 0.85rem;
+        font-size: 1.05rem;
+        border-radius: 12px;
     }
 
     header div {
@@ -1377,10 +1413,35 @@ body.modo-daltonico .svg-linha-aux {
 }
 
 .no-raiz:hover .rotulo-no-raiz,
-.no-raiz:focus-within .rotulo-no-raiz {
+.no-raiz:focus-within .rotulo-no-raiz,
+.no-raiz.popover-aberto .rotulo-no-raiz {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+}
+
+.no-raiz.popover-aberto {
+    z-index: 300;
+}
+
+.pilula-nome-modulo {
+    margin-top: 5px;
+    background-color: rgba(62, 39, 35, 0.92);
+    color: #F5F5DC;
+    border: 1.5px solid #A3B18A;
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.74rem;
+    font-weight: bold;
+    white-space: nowrap;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+}
+
+body.modo-daltonico .pilula-nome-modulo {
+    background-color: var(--dal-painel-escuro-bg) !important;
+    color: var(--dal-painel-escuro-texto) !important;
+    border-color: var(--dal-painel-escuro-borda) !important;
 }
 
 .rotulo-no-raiz strong {
@@ -1478,20 +1539,32 @@ body.modo-daltonico footer {
 
 @media (max-width: 768px) {
     .main-arvore {
-        margin: 1rem 0 0;
-        padding: 0.5rem 0 0;
-        gap: 1rem;
+        margin: 0.75rem 0 0;
+        padding: 0.35rem 0 0;
+        gap: 0.75rem;
     }
 
     .arvore-modulos {
-        width: 98%;
-        max-width: 560px;
+        width: 100%;
+        max-width: 540px;
         padding: 0;
     }
 
+    .no-raiz-1 { top: 49%; left: 50%; }
+    .no-raiz-2 { top: 54.5%; left: 28%; }
+    .no-raiz-3 { top: 60%; left: 72%; }
+    .no-raiz-4 { top: 65.5%; left: 30%; }
+    .no-raiz-5 { top: 71%; left: 70%; }
+    .no-raiz-6 { top: 76.5%; left: 28%; }
+    .no-raiz-7 { top: 82%; left: 72%; }
+    .no-raiz-8 { top: 87.5%; left: 30%; }
+    .no-raiz-9 { top: 92.5%; left: 70%; }
+    .no-raiz-10 { top: 96.5%; left: 50%; }
+
     .circulo-modulo {
-        width: clamp(54px, 13vw, 72px);
-        height: clamp(54px, 13vw, 72px);
+        width: clamp(56px, 14vw, 70px);
+        height: clamp(56px, 14vw, 70px);
+        box-shadow: 0 5px 0 #3E2723, 0 8px 16px rgba(0, 0, 0, 0.42);
     }
 
     .circulo-modulo svg {
@@ -1512,6 +1585,47 @@ body.modo-daltonico footer {
     .opcao-exercicios-circulo svg {
         width: clamp(13px, 3vw, 16px);
         height: clamp(13px, 3vw, 16px);
+    }
+
+    .pilula-nome-modulo {
+        font-size: 0.68rem;
+        padding: 0.12rem 0.5rem;
+    }
+
+    .rotulo-no-raiz {
+        min-width: 165px;
+        padding: 0.65rem 0.8rem;
+        border-radius: 14px;
+    }
+
+    .no-raiz-2 .rotulo-no-raiz,
+    .no-raiz-4 .rotulo-no-raiz,
+    .no-raiz-6 .rotulo-no-raiz,
+    .no-raiz-8 .rotulo-no-raiz {
+        left: -12px;
+        right: auto;
+    }
+
+    .no-raiz-3 .rotulo-no-raiz,
+    .no-raiz-5 .rotulo-no-raiz,
+    .no-raiz-7 .rotulo-no-raiz,
+    .no-raiz-9 .rotulo-no-raiz {
+        right: -12px;
+        left: auto;
+    }
+
+    .no-raiz-8 .rotulo-no-raiz,
+    .no-raiz-9 .rotulo-no-raiz,
+    .no-raiz-10 .rotulo-no-raiz {
+        top: auto;
+        bottom: calc(100% + 10px);
+    }
+
+    .acoes-no-raiz a {
+        padding: 0.48rem 0.75rem;
+        font-size: 0.88rem;
+        border-radius: 8px;
+        text-align: center;
     }
 }
 
@@ -1552,15 +1666,6 @@ body.modo-daltonico footer {
     .rotulo-no-raiz {
         min-width: 145px;
         padding: 0.5rem 0.7rem;
-    }
-
-    .no-raiz-esquerda .rotulo-no-raiz {
-        left: -10px;
-    }
-
-    .no-raiz-direita .rotulo-no-raiz {
-        right: -10px;
-        left: auto;
     }
 }
 

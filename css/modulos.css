@@ -22,35 +22,102 @@ body.pagina-modulo {
     width: 100%;
     max-width: 1020px;
     min-height: 30rem;
-    padding: 1.8rem 2.5rem 1.8rem;
+    padding: 1.5rem 2.2rem 1.6rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
     border: 3px solid #3E2723;
 }
+
+.duo-licao-topo {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 0.85rem;
+    width: 100%;
+}
+
+.duo-btn-sair {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #DAD7CD;
+    color: #344E41;
+    border: 2px solid #3E2723;
+    border-bottom-width: 4px;
+    border-radius: 12px;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.92rem;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: transform 0.12s ease, background-color 0.15s ease;
+}
+
+.duo-btn-sair:hover {
+    background-color: #A3B18A;
+    color: #1F1F1F;
+}
+
+.duo-btn-sair:active {
+    transform: translateY(2px);
+    border-bottom-width: 2px;
+}
+
+.duo-progresso-trilha {
+    flex: 1;
+    height: 16px;
+    background-color: #DAD7CD;
+    border: 2px solid #3E2723;
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.duo-progresso-preenchimento {
+    height: 100%;
+    width: 15%;
+    background: linear-gradient(180deg, #6a994e 0%, #588157 55%, #3A5A40 100%);
+    border-radius: 999px;
+    transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+}
+
+.duo-progresso-preenchimento::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 8px;
+    right: 8px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.32);
+    border-radius: 999px;
+}
+
 .modulo-abas {
     display: flex;
-    gap: 0.8rem;
+    gap: 0.65rem;
     border-bottom: 3px solid #3E2723;
-    padding-bottom: 1rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
+    padding-bottom: 0.85rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: nowrap;
 }
 
 .aba-btn {
     flex: 1;
-    min-width: 180px;
+    min-width: 120px;
     background-color: #DAD7CD;
     color: #344E41;
     border: 2px solid #588157;
-    border-radius: 10px;
-    padding: 0.75rem 1.2rem;
-    font-size: 1.05rem;
+    border-bottom-width: 4px;
+    border-radius: 12px;
+    padding: 0.65rem 1rem;
+    font-size: 1.02rem;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+    transition: all 0.15s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .aba-btn.ativa {
@@ -181,7 +248,7 @@ body.pagina-modulo {
     padding: 3rem 2rem 1.6rem;
     border-radius: 16px;
     position: relative;
-    max-width: 100%;
+    
     background: linear-gradient(145deg, #d4af37 0%, #aa7c11 45%, #8a6208 100%);
     border: 6px solid #5c4004;
     outline: 3px solid #e5c158;
@@ -212,7 +279,7 @@ body.pagina-modulo {
     align-items: center;
     gap: 0.65rem;
     background: rgba(45, 28, 2, 0.22);
-    padding: 0.85rem 0.9rem;
+    padding: 1rem 1rem;
     border-radius: 12px;
 }
 
@@ -1089,56 +1156,451 @@ body.modo-daltonico .exercicio-feedback-inline {
     color: var(--dal-painel-escuro-texto) !important;
     border-left-color: var(--dal-painel-escuro-destaque) !important;
 }
+
+body.modo-daltonico .duo-btn-sair {
+    background-color: var(--dal-card-claro-bg) !important;
+    color: var(--dal-card-claro-texto) !important;
+    border-color: var(--dal-quadro-borda) !important;
+}
+
+body.modo-daltonico .duo-progresso-trilha {
+    background-color: var(--dal-input-bg) !important;
+    border-color: var(--dal-quadro-borda) !important;
+}
+
+body.modo-daltonico .duo-progresso-preenchimento {
+    background: var(--dal-acerto-bg) !important;
+}
+
 @media (max-width: 860px) {
     .modulo-quadro {
-        padding: 1.2rem 1.2rem;
+        padding: 1.1rem 1rem;
     }
 
     .maquina {
-        flex-wrap: wrap;
-        padding: 1.6rem 0.9rem 1.2rem;
-        gap: 0.6rem;
+        flex-wrap: nowrap;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 1.25rem 0.45rem 0.9rem;
+        gap: 0.35rem;
+        justify-content: space-between;
     }
 
     .separador-classes {
-        display: none;
+        font-size: 1.5rem;
+        margin-top: 1.1rem;
+        padding: 0;
     }
 
     .grupo-classe {
-        width: 100%;
+        flex: 3 1 0;
+        min-width: 0;
+        padding: 0.55rem 0.35rem;
+        gap: 0.45rem;
+    }
+
+    .maquina.maquina-compacta .grupo-classe[data-classe="2"] {
+        flex: 1.15 1 0;
+    }
+
+    .maquina.maquina-compacta .grupo-classe[data-classe="1"] {
+        flex: 3 1 0;
     }
 
     .filas-classe {
         justify-content: center;
         width: 100%;
+        gap: 0.3rem;
+    }
+
+    .maquina .fila {
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 0.45rem 0.25rem;
+        gap: 0.35rem;
     }
 }
 
 @media (max-width: 768px) {
+    body.pagina-modulo header {
+        padding: 0.45rem 0.85rem;
+    }
+
+    .modulo-main {
+        padding: 0;
+        align-items: stretch;
+    }
+
+    .modulo-quadro {
+        min-height: calc(100dvh - 52px);
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        padding: 0.75rem 0.75rem 0;
+        box-sizing: border-box;
+    }
+
+    .duo-licao-topo {
+        margin-bottom: 0.55rem;
+        gap: 0.6rem;
+    }
+
+    .duo-btn-sair {
+        padding: 0.35rem 0.7rem;
+        font-size: 0.85rem;
+    }
+
+    .duo-progresso-trilha {
+        height: 14px;
+    }
+
+    .modulo-abas {
+        padding-bottom: 0.6rem;
+        margin-bottom: 0.8rem;
+        gap: 0.5rem;
+    }
+
+    .aba-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.94rem;
+        border-radius: 10px;
+    }
+
+    .modulo-conteudo {
+        align-items: flex-start;
+        padding-bottom: 0.5rem;
+    }
+
     .teoria {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
     }
 
-    .modulo-botoes {
-        gap: 0.8rem;
+    .teoria-imagem {
+        order: -1;
+        min-height: auto;
+        width: 100%;
+        background-color: rgba(245, 245, 220, 0.7);
+        border: 2px solid rgba(62, 39, 35, 0.25);
+        border-radius: 14px;
+        padding: 0.75rem;
+        box-sizing: border-box;
     }
 
-    .modulo-botoes button {
-        min-width: 6.5rem;
-        padding: 0.6rem 1rem;
+    .teoria-imagem img {
+        max-height: 165px;
+    }
+
+    .teoria-texto {
+        gap: 0.75rem;
+        background-color: #F5F5DC;
+        border: 2px solid #3E2723;
+        border-radius: 14px;
+        padding: 1rem 1.05rem;
+        width: 100%;
+        box-sizing: border-box;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .teoria-texto h2 {
+        font-size: 1.25rem;
+    }
+
+    .teoria-texto p {
+        font-size: 0.98rem;
+        line-height: 1.5;
+    }
+
+    .pascalina-secao {
+        gap: 0.75rem;
+    }
+
+    .pascalina-cabecalho h2 {
+        font-size: 1.2rem;
+    }
+
+    .pascalina-cabecalho p {
+        font-size: 0.88rem;
+        line-height: 1.35;
+    }
+
+    .interacao {
+        padding: 0.15rem 0;
+    }
+
+    .maquina {
+        padding: 1.05rem 0.3rem 0.7rem;
+        gap: 0.2rem;
+        border-width: 4px;
+        outline-width: 2px;
+        outline-offset: -6px;
+        border-radius: 14px;
+    }
+
+    .maquina::before,
+    .maquina::after {
+        display: none;
+    }
+
+    .grupo-classe,
+    .maquina .fila {
+        position: static;
+    }
+
+    .popup-pascalina-card {
+        left: 0.35rem;
+        right: 0.35rem;
+        width: auto;
+        bottom: calc(100% + 8px);
+        transform: translateY(4px);
+        padding: 0.65rem 0.8rem;
+        z-index: 1400;
+    }
+
+    .popup-pascalina-card::after {
+        display: none;
+    }
+
+    .badge-classe:hover + .popup-classe,
+    .badge-classe:focus + .popup-classe,
+    .grupo-classe.popup-aberto > .popup-classe,
+    .fila:hover > .popup-ordem,
+    .fila:focus-within > .popup-ordem,
+    .fila.popup-aberto > .popup-ordem {
+        transform: translateY(0);
+    }
+
+    .badge-classe,
+    .titulo-classe-compacto {
+        font-size: 0.72rem;
+        padding: 0.22rem 0.5rem;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .badge-ordem,
+    .badge-ordem-mini {
+        font-size: 0.64rem;
+        padding: 0.15rem 0.28rem;
+        border-radius: 8px;
+    }
+
+    .maquina .fila > p,
+    .maquina.maquina-compacta .fila > p {
+        width: 100%;
+        max-width: 38px;
+        height: 46px;
+        font-size: 1.45rem;
+        border-width: 3px;
+    }
+
+    .maquina .fila > img,
+    .maquina.maquina-compacta .fila > img {
+        width: 32px;
+        height: 32px;
+        padding: 5px;
+        touch-action: manipulation;
+    }
+
+    .sigla-ordem {
+        font-size: 0.68rem;
+    }
+
+    .pascalina-painel-info {
+        padding: 0.75rem 0.9rem;
+        gap: 0.55rem;
+    }
+
+    .pascalina-visor-geral span {
+        font-size: 0.94rem;
+    }
+
+    .pascalina-visor-geral strong {
+        font-size: 1.2rem;
+    }
+
+    .pascalina-decomposicao {
+        font-size: 0.82rem !important;
+    }
+
+    .modulo-botoes,
+    .exercicios-rodape {
+        position: sticky;
+        bottom: 0;
+        z-index: 95;
+        background-color: #EADBC8;
+        margin: 0.6rem -0.75rem 0;
+        padding: 0.75rem 0.85rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+        border-top: 3px solid #3E2723;
+        box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.12);
+        gap: 0.6rem;
+    }
+
+    body.modo-daltonico .modulo-botoes,
+    body.modo-daltonico .exercicios-rodape {
+        background-color: var(--dal-quadro-bg) !important;
+        border-top-color: var(--dal-quadro-borda) !important;
+    }
+
+    .modulo-botoes button,
+    .exercicios-rodape button {
+        flex: 1;
+        min-width: 0;
+        padding: 0.75rem 0.85rem;
+        font-size: 0.96rem;
+        border-radius: 12px;
+        border-bottom-width: 4px;
+    }
+
+    .indicador-pagina {
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+
+    .exercicios-wrapper {
+        gap: 0.75rem;
+        flex: 1;
+        justify-content: space-between;
+    }
+
+    .exercicios-topo {
+        padding: 0.65rem 0.75rem;
+        gap: 0.55rem;
+        border-radius: 10px;
+    }
+
+    .exercicios-status {
+        gap: 0.35rem;
+    }
+
+    .badge-progresso,
+    .badge-tipo-questao,
+    .badge-placar {
+        font-size: 0.76rem;
+        padding: 0.22rem 0.6rem;
     }
 
     .exercicios-trilha {
-        grid-template-columns: repeat(5, 1fr);
+        display: flex;
+        overflow-x: auto;
+        gap: 0.38rem;
+        padding-bottom: 0.2rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+
+    .pilula-questao {
+        flex: 0 0 34px;
+        height: 32px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        scroll-snap-align: center;
+    }
+
+    .exercicio-card {
+        padding: 0.95rem 0.9rem;
+        gap: 0.85rem;
+        border-radius: 14px;
+    }
+
+    .exercicio-titulo {
+        font-size: 1.05rem;
+    }
+
+    .exercicio-enunciado {
+        font-size: 0.98rem;
+        line-height: 1.45;
+    }
+
+    .exercicio-quadro-visual {
+        padding: 0.75rem 0.65rem;
+        gap: 0.45rem;
+    }
+
+    .quadro-visual-legenda {
+        font-size: 0.75rem;
+        text-align: center;
+    }
+
+    .quadro-visual-numero {
+        font-size: clamp(1.3rem, 5.5vw, 1.85rem);
+        gap: 0.25rem;
+    }
+
+    .digito-caixa {
+        min-width: 1.85rem;
+        padding: 0.2rem 0.32rem;
+    }
+
+    .exercicio-pascalina-area {
+        padding: 0.65rem 0.45rem;
+        gap: 0.6rem;
+    }
+
+    .exercicio-pascalina-instrucao {
+        font-size: 0.84rem;
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .pascalina-ex-status {
+        flex-direction: column;
+        gap: 0.55rem;
+        font-size: 0.95rem;
+    }
+
+    #btn-responder-pascalina {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        border-radius: 12px;
+        border-bottom-width: 4px;
     }
 
     .exercicio-opcoes {
         grid-template-columns: 1fr;
+        gap: 0.6rem;
     }
 
-    .exercicio-card {
-        padding: 1.1rem;
+    .btn-opcao-exercicio {
+        padding: 0.85rem 0.95rem;
+        font-size: 0.95rem;
+        border-radius: 12px;
+        border-width: 2px;
+        border-bottom-width: 4px;
+    }
+
+    .btn-opcao-exercicio:active:not(:disabled) {
+        transform: translateY(2px);
+        border-bottom-width: 2px;
+    }
+
+    #exercicio-input-resposta {
+        text-align: center;
+        font-size: 1.35rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .exercicio-input-box .teclado-virtual {
+        max-width: 100%;
+        gap: 0.4rem;
+    }
+
+    .exercicio-input-box .tecla-virtual {
+        padding: 0.6rem 0;
+        font-size: 1.2rem;
+        border-radius: 10px;
     }
 
     #btn-verificar-input {
@@ -1147,27 +1609,57 @@ body.modo-daltonico .exercicio-feedback-inline {
 }
 
 @media (max-width: 480px) {
+    .maquina {
+        padding: 0.85rem 0.2rem 0.6rem;
+        gap: 0.12rem;
+    }
+
+    .grupo-classe {
+        padding: 0.4rem 0.18rem;
+        gap: 0.32rem;
+        border-radius: 9px;
+    }
+
     .filas-classe {
-        gap: 0.45rem;
+        gap: 0.14rem;
     }
 
-    .maquina .fila {
-        padding: 0.5rem 0.45rem;
+    .maquina .fila,
+    .maquina.maquina-compacta .fila {
+        padding: 0.32rem 0.12rem;
+        gap: 0.25rem;
+        border-radius: 8px;
     }
 
-    .maquina .fila > p {
-        width: 40px;
-        height: 52px;
-        font-size: 1.7rem;
+    .maquina .fila > p,
+    .maquina.maquina-compacta .fila > p {
+        max-width: 33px;
+        height: 41px;
+        font-size: 1.3rem;
+        border-width: 2.5px;
     }
 
-    .maquina .fila > img {
+    .maquina .fila > img,
+    .maquina.maquina-compacta .fila > img {
         width: 28px;
         height: 28px;
+        padding: 4px;
     }
 
-    .popup-pascalina-card {
-        width: 175px;
-        padding: 0.55rem 0.65rem;
+    .badge-ordem,
+    .badge-ordem-mini {
+        font-size: 0.58rem;
+        padding: 0.12rem 0.18rem;
+    }
+
+    .badge-classe,
+    .titulo-classe-compacto {
+        font-size: 0.66rem;
+        padding: 0.18rem 0.35rem;
+    }
+
+    .separador-classes {
+        font-size: 1.15rem;
+        margin-top: 0.9rem;
     }
 }

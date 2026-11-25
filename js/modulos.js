@@ -9,6 +9,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const abaBtnExercicios = document.getElementById('aba-btn-exercicios');
     const painelTeoria = document.getElementById('painel-teoria');
     const painelExercicios = document.getElementById('painel-exercicios');
+    const navAbas = document.querySelector('.modulo-abas');
+
+    let barraProgressoTeoriaFill = null;
+
+    if (navAbas) {
+        const topoDuo = document.createElement('div');
+        topoDuo.className = 'duo-licao-topo';
+        topoDuo.innerHTML = `
+            <a href="../index.html" class="duo-btn-sair" aria-label="Voltar para a árvore de módulos" title="Voltar para a trilha">← Trilha</a>
+            <div class="duo-progresso-trilha" aria-hidden="true">
+                <div class="duo-progresso-preenchimento" id="duo-progresso-fill"></div>
+            </div>
+        `;
+        navAbas.parentNode.insertBefore(topoDuo, navAbas);
+        barraProgressoTeoriaFill = topoDuo.querySelector('#duo-progresso-fill');
+    }
+
+    function atualizarBarraTopo(percentual) {
+        if (barraProgressoTeoriaFill) {
+            const limpo = Math.max(6, Math.min(100, Math.round(percentual)));
+            barraProgressoTeoriaFill.style.width = `${limpo}%`;
+        }
+    }
+
+    window.atualizarBarraProgressoModulo = atualizarBarraTopo;
 
     function alternarAba(nomeAba) {
         const modoExercicios = nomeAba === 'exercicios';
@@ -21,6 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             painelTeoria.classList.toggle('ativo', !modoExercicios);
             painelExercicios.classList.toggle('ativo', modoExercicios);
+
+            if (!modoExercicios && paginas.length > 0) {
+                atualizarBarraTopo(((paginaAtual + 1) / paginas.length) * 100);
+            } else if (modoExercicios) {
+                const pilulasTotal = document.querySelectorAll('.pilula-questao').length || 20;
+                const pilulasConcluidas = document.querySelectorAll('.pilula-questao.concluida').length;
+                atualizarBarraTopo(pilulasConcluidas > 0 ? (pilulasConcluidas / pilulasTotal) * 100 : 8);
+            }
         }
     }
 
@@ -67,12 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const paginas = Array.from(document.querySelectorAll('.pagina'));
     let paginaAtual = 0;
 
+    const chaveProgresso = 'progresso_' + (window.location.pathname.split('/').pop() || 'modulo');
+
     function salvarNoLocalStorage() {
-        localStorage.setItem('progresso', JSON.stringify(paginaAtual));
+        localStorage.setItem(chaveProgresso, JSON.stringify(paginaAtual));
     }
 
     function carregarDoLocalStorage() {
-        const salvo = JSON.parse(localStorage.getItem('progresso'));
+        const salvo = JSON.parse(localStorage.getItem(chaveProgresso));
         if (salvo !== null && !isNaN(salvo) && salvo >= 0 && salvo < paginas.length) {
             paginaAtual = Number(salvo);
         }
@@ -85,6 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (indicadorPagina) {
             indicadorPagina.textContent = `Página ${paginaAtual + 1} de ${paginas.length}`;
+        }
+
+        if (!painelExercicios || !painelExercicios.classList.contains('ativo')) {
+            atualizarBarraTopo(((paginaAtual + 1) / Math.max(1, paginas.length)) * 100);
         }
 
         if (btnVoltar) {

@@ -582,9 +582,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             enunciado: 'No número <strong>58.314</strong>, o algarismo <strong>5</strong> está destacado. <strong>Que ordem é essa?</strong>',
             opcoes: [
-                '5ª Ordem — Dezenas de Milhar',
                 '4ª Ordem — Unidades de Milhar',
                 '2ª Ordem — Dezenas Simples',
+                '5ª Ordem — Dezenas de Milhar',
                 '6ª Ordem — Centenas de Milhar'
             ],
             respostaCorreta: '5ª Ordem — Dezenas de Milhar',
@@ -658,8 +658,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             enunciado: 'Observe o número <strong>2.740.315</strong>, com o algarismo <strong>2</strong> em destaque. <strong>Que ordem é essa?</strong>',
             opcoes: [
-                '7ª Ordem — Unidades de Milhão',
                 '4ª Ordem — Unidades de Milhar',
+                '7ª Ordem — Unidades de Milhão',
                 '6ª Ordem — Centenas de Milhar',
                 '8ª Ordem — Dezenas de Milhão'
             ],
@@ -683,9 +683,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             enunciado: 'No número <strong>14.829</strong>, o grupo dos três primeiros algarismos da direita (<strong>829</strong>) está destacado. <strong>Que classe é essa?</strong>',
             opcoes: [
-                '1ª Classe — Classe das Unidades Simples',
                 '2ª Classe — Classe dos Milhares',
                 '3ª Classe — Classe dos Milhões',
+                '1ª Classe — Classe das Unidades Simples',
                 '4ª Classe — Classe dos Bilhões'
             ],
             respostaCorreta: '1ª Classe — Classe das Unidades Simples',
@@ -708,10 +708,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             enunciado: 'Observe o grupo destacado (<strong>345</strong>) no número <strong>345.120</strong>. <strong>Que classe é essa</strong> formada pelas 4ª, 5ª e 6ª ordens?',
             opcoes: [
-                '2ª Classe — Classe dos Milhares',
                 '1ª Classe — Classe das Unidades Simples',
                 '3ª Classe — Classe dos Milhões',
-                '4ª Classe — Classe dos Bilhões'
+                '4ª Classe — Classe dos Bilhões',
+                '2ª Classe — Classe dos Milhares'
             ],
             respostaCorreta: '2ª Classe — Classe dos Milhares',
             explicacaoAcerto: 'Isso mesmo! O segundo grupo de 3 algarismos da direita para a esquerda (345) pertence à 2ª Classe: Classe dos Milhares (345 mil)!',
@@ -767,8 +767,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             enunciado: 'Olhando para o número <strong>9.130.400.000</strong>, o algarismo <strong>9</strong> (na 10ª ordem) pertence a <strong>que classe?</strong>',
             opcoes: [
-                '4ª Classe — Classe dos Bilhões',
                 '3ª Classe — Classe dos Milhões',
+                '4ª Classe — Classe dos Bilhões',
                 '2ª Classe — Classe dos Milhares',
                 '1ª Classe — Classe das Unidades Simples'
             ],
@@ -791,10 +791,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             enunciado: 'O número <strong>45.231</strong> possui quantas <strong>ordens</strong> e quantas <strong>classes</strong> ao todo?',
             opcoes: [
-                '5 ordens e 2 classes (Unidades Simples e Milhares)',
                 '5 ordens e 5 classes',
                 '2 ordens e 5 classes',
-                '6 ordens e 3 classes'
+                '6 ordens e 3 classes',
+                '5 ordens e 2 classes (Unidades Simples e Milhares)'
             ],
             respostaCorreta: '5 ordens e 2 classes (Unidades Simples e Milhares)',
             explicacaoAcerto: 'Perfeito! São 5 algarismos (5 ordens) divididos em 2 classes: 231 na 1ª Classe (Unidades Simples) e 45 na 2ª Classe (Milhares)!',
@@ -980,11 +980,25 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             elTrilha.appendChild(btn);
         });
+
+        const pilulaAtiva = elTrilha.querySelector('.pilula-questao.atual');
+        if (pilulaAtiva && typeof pilulaAtiva.scrollIntoView === 'function') {
+            pilulaAtiva.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
     }
 
     function atualizarPlacarETrilha() {
         if (elPlacar) {
             elPlacar.textContent = `Acertos: ${questoesConcluidas.size} / ${QUESTOES_MODULO1.length}`;
+        }
+        if (typeof window.atualizarBarraProgressoModulo === 'function') {
+            const painelEx = document.getElementById('painel-exercicios');
+            if (painelEx && painelEx.classList.contains('ativo')) {
+                const perc = questoesConcluidas.size > 0
+                    ? (questoesConcluidas.size / QUESTOES_MODULO1.length) * 100
+                    : ((indiceQuestaoAtual + 1) / QUESTOES_MODULO1.length) * 100;
+                window.atualizarBarraProgressoModulo(perc);
+            }
         }
         construirTrilhaPilulas();
 

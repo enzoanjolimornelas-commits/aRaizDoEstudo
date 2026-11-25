@@ -21,8 +21,8 @@
     </header>
 
     <main class="modulo-main">
-        <div class="modulo-quadro" data-paginas="2">
-            <nav class="modulo-abas" role="tablist" aria-label="Etapas do Módulo 1">
+        <div class="modulo-quadro" data-paginas="4">
+            <nav class="modulo-abas" role="tablist" aria-label="Etapas do Módulo 2">
                 <button type="button" class="aba-btn ativa" id="aba-btn-teoria" role="tab" aria-selected="true" aria-controls="painel-teoria">
                     Teoria
                 </button>
@@ -37,48 +37,149 @@
                         <div class="teoria">
                             <div class="teoria-texto">
                                 <h2>Adição</h2>
-                                <p>A adição é uma operação matemática que serve para juntar quantidades.</p>
-                                <p>Observação: Soma é o nome que a gente dá para o resultado final, a Adição é a operação matemática em si!</p>
+                                <p>A <strong>adição</strong> é a operação matemática que serve para juntar ou acrescentar quantidades.</p>
+                                <p>Os números que juntamos são chamados de <strong>parcelas</strong>, e o resultado final recebe o nome de <strong>soma ou total</strong>!</p>
+                                <div class="exemplo-operacao-box">
+                                    <span><strong>3</strong> (1ª Parcela) + <strong>2</strong> (2ª Parcela) = <strong>5</strong> (Soma ou Total)</span>
+                                </div>
                             </div>
-                        
                             <div class="teoria-imagem">
-                                <img src="../img/soma.png" width="100px" alt="Símbolo da adição, primeira operação fundamental da matemática">
+                                <img src="../img/soma.png" width="140" alt="Símbolo da adição, primeira operação fundamental da matemática">
+                                <label>Sinal de mais (+), símbolo da adição.</label>
                             </div>
                         </div>
                     </section>
+
                     <section class="pagina">
-                        <div class="pascalina-cabecalho">
-                            <h2>Picnic!</h2>
-                            <p>Arraste as frutas até as cestas para descobrir o número total de frutas.</p>
+                        <div class="picnic-secao">
+                            <div class="pascalina-cabecalho">
+                                <h2>Piquenique da Adição!</h2>
+                                <p>Arraste (ou clique) nas maçãs da toalha até as duas cestas de cima para somar as parcelas e ver o total na cesta da soma!</p>
+                            </div>
+                            <div class="interacao">
+                                <div id="picnic" class="picnic-palco">
+                                    <div class="pegarFrutas-topo">
+                                        <span class="rotulo-toalha">Maçãs disponíveis na toalha (arraste para as cestas abaixo):</span>
+                                        <button type="button" id="btn-resetar-adicao" class="btn-mini-pascalina">Recomeçar Piquenique</button>
+                                    </div>
+                                    <div class="pegarFrutas" id="estoque-adicao" data-zona="estoque">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 1" class="fruta" data-fruta-id="a1">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 2" class="fruta" data-fruta-id="a2">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 3" class="fruta" data-fruta-id="a3">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 4" class="fruta" data-fruta-id="a4">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 5" class="fruta" data-fruta-id="a5">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 6" class="fruta" data-fruta-id="a6">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 7" class="fruta" data-fruta-id="a7">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 8" class="fruta" data-fruta-id="a8">
+                                    </div>
+
+                                    <div class="parcelas">
+                                        <div class="cesta-coluna">
+                                            <span class="cesta-titulo" id="titulo-parcela-1">1ª Cesta (Parcela): 0</span>
+                                            <div class="cesta cesta-alvo" id="cesta-parcela-1" data-zona="parcela1">
+                                                <div class="cesta-interior"></div>
+                                                <div class="cesta-frutas-lista"></div>
+                                                <div class="cesta-tranca"></div>
+                                            </div>
+                                        </div>
+
+                                        <img src="../img/soma.png" class="sinal-operacao-picnic" alt="Símbolo da adição">
+
+                                        <div class="cesta-coluna">
+                                            <span class="cesta-titulo" id="titulo-parcela-2">2ª Cesta (Parcela): 0</span>
+                                            <div class="cesta cesta-alvo" id="cesta-parcela-2" data-zona="parcela2">
+                                                <div class="cesta-interior"></div>
+                                                <div class="cesta-frutas-lista"></div>
+                                                <div class="cesta-tranca"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="soma">
+                                        <span class="cesta-titulo cesta-titulo-destaque">Cesta da Soma (Resultado Total)</span>
+                                        <div class="cesta cesta-resultado" id="cesta-resultado-soma">
+                                            <div class="cesta-interior"></div>
+                                            <div class="cesta-frutas-lista" id="lista-resultado-soma"></div>
+                                            <div class="cesta-tranca"></div>
+                                        </div>
+                                        <p class="discP" id="texto-resultado-soma">0 + 0 = Soma: 0 frutas.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="interacao">
-                            <div id="picnic">
-                                <div class="pegarFrutas">
-                                    <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Imagem de uma Maçã" width="100px" class="fruta">
-                                    <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Imagem de uma Maçã" width="100px" class="fruta">
-                                    <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Imagem de uma Maçã" width="100px" class="fruta">
-                                    <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Imagem de uma Maçã" width="100px" class="fruta">
-                                    <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Imagem de uma Maçã" width="100px" class="fruta">
-                                    <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Imagem de uma Maçã" width="100px" class="fruta">
+                    </section>
+
+                    <section class="pagina">
+                        <div class="teoria">
+                            <div class="teoria-texto">
+                                <h2>Subtração</h2>
+                                <p>A <strong>subtração</strong> é a operação matemática usada para <strong>retirar</strong> uma quantidade de outra, comparar dois valores ou descobrir quanto falta para completar um total.</p>
+                                <p>Chamamos de <strong>minuendo</strong> a quantidade inicial que temos, de <strong>subtraendo</strong> a quantidade que retiramos, e de <strong>resto ou diferença</strong> o resultado que sobra no final!</p>
+                                <div class="exemplo-operacao-box">
+                                    <span><strong>8</strong> (Quantidade Inicial) - <strong>3</strong> (Retiramos) = <strong>5</strong> (Resto ou Diferença)</span>
                                 </div>
-                                <div class="parcelas">
-                                    <div class="cesta">
-                                        <div class="cesta-interior"></div>
-                                        <div class="cesta-tranca"></div>
+                            </div>
+                            <div class="teoria-imagem">
+                                <img src="../img/subtracao.png" width="140" alt="Símbolo da subtração, operação inversa da adição">
+                                <label>Sinal de menos (-), símbolo da subtração.</label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="pagina">
+                        <div class="picnic-secao">
+                            <div class="pascalina-cabecalho">
+                                <h2>Piquenique da Subtração!</h2>
+                                <p>Arraste (ou clique) nas maçãs da toalha para a <strong>1ª Cesta (Minuendo)</strong> e para a <strong>2ª Cesta (Subtraendo)</strong> e veja o resultado de <strong>1ª Cesta - 2ª Cesta</strong> na Cesta do Resto!</p>
+                            </div>
+                            <div class="interacao">
+                                <div id="picnic-subtracao" class="picnic-palco">
+                                    <div class="pegarFrutas-topo">
+                                        <span class="rotulo-toalha">Toalha do Piquenique (arraste as maçãs para as cestas):</span>
+                                        <button type="button" id="btn-resetar-subtracao" class="btn-mini-pascalina">Devolver Maçãs para a Toalha</button>
                                     </div>
-                                    <img src="../img/soma.png" width="100px" alt="Símbolo da adição, primeira operação fundamental da matemática">
-                                    <div class="cesta">
-                                        <div class="cesta-interior"></div>
-                                        <div class="cesta-tranca"></div>
+                                    <div class="pegarFrutas" id="estoque-subtracao" data-zona-sub="estoque">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 1" class="fruta-sub" data-fruta-id="s1">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 2" class="fruta-sub" data-fruta-id="s2">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 3" class="fruta-sub" data-fruta-id="s3">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 4" class="fruta-sub" data-fruta-id="s4">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 5" class="fruta-sub" data-fruta-id="s5">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 6" class="fruta-sub" data-fruta-id="s6">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 7" class="fruta-sub" data-fruta-id="s7">
+                                        <img src="../img/Fresh_Red_Apple_PNG_Clip_Art_Image.png" alt="Maçã 8" class="fruta-sub" data-fruta-id="s8">
                                     </div>
-                                </div>
-                                <div class="soma">
-                                    <div class="cesta">
-                                        <div class="cesta-interior"></div>
-                                        <div class="cesta-tranca"></div>
-                                        
+
+                                    <div class="parcelas">
+                                        <div class="cesta-coluna">
+                                            <span class="cesta-titulo" id="titulo-minuendo">1ª Cesta (Minuendo): 0</span>
+                                            <div class="cesta cesta-alvoSub" id="cesta-minuendo" data-zona-sub="minuendo">
+                                                <div class="cesta-interior"></div>
+                                                <div class="cesta-frutas-lista" id="lista-minuendo"></div>
+                                                <div class="cesta-tranca"></div>
+                                            </div>
+                                        </div>
+
+                                        <img src="../img/subtracao.png" class="sinal-operacao-picnic" alt="Símbolo da subtração">
+
+                                        <div class="cesta-coluna">
+                                            <span class="cesta-titulo" id="titulo-subtraendo">2ª Cesta (Subtraendo): 0</span>
+                                            <div class="cesta cesta-alvoSub" id="cesta-subtraendo" data-zona-sub="subtraendo">
+                                                <div class="cesta-interior"></div>
+                                                <div class="cesta-frutas-lista" id="lista-subtraendo"></div>
+                                                <div class="cesta-tranca"></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <p class="discP">Frutas: 0.</p>
+
+                                    <div class="soma">
+                                        <span class="cesta-titulo cesta-titulo-destaque">Cesta do Resto ou Diferença (1ª Cesta - 2ª Cesta)</span>
+                                        <div class="cesta cesta-resultado" id="cesta-resultado-subtracao">
+                                            <div class="cesta-interior"></div>
+                                            <div class="cesta-frutas-lista" id="lista-resultado-subtracao"></div>
+                                            <div class="cesta-tranca"></div>
+                                        </div>
+                                        <p class="discP" id="texto-resultado-subtracao">0 (1ª Cesta) - 0 (2ª Cesta) = Resto: 0 frutas.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -87,14 +188,94 @@
 
                 <div class="modulo-botoes">
                     <button type="button" id="btn-voltar">Voltar</button>
-                    <span id="indicador-pagina" class="indicador-pagina">Página 1 de 6</span>
+                    <span id="indicador-pagina" class="indicador-pagina">Página 1 de 4</span>
                     <button type="button" id="btn-avancar">Avançar</button>
                 </div>
             </div>
 
             <div id="painel-exercicios" class="painel-aba" role="tabpanel" aria-labelledby="aba-btn-exercicios">
                 <div class="exercicios-wrapper">
-                    
+                    <div class="exercicios-topo">
+                        <div class="exercicios-status">
+                            <span id="exercicio-progresso-texto" class="badge-progresso">Questão 1 de 20</span>
+                            <span id="exercicio-tipo-badge" class="badge-tipo-questao">Adição na Pascalina</span>
+                            <span id="exercicio-placar" class="badge-placar">Acertos: 0 / 20</span>
+                        </div>
+                        <div class="exercicios-trilha" id="exercicios-trilha" aria-label="Navegação pelas 20 questões"></div>
+                    </div>
+
+                    <div class="exercicio-card" id="exercicio-card">
+                        <h3 id="exercicio-titulo" class="exercicio-titulo">Questão 1</h3>
+                        <p id="exercicio-enunciado" class="exercicio-enunciado"></p>
+
+                        <div id="exercicio-quadro-visual" class="exercicio-quadro-visual" style="display: none;"></div>
+
+                        <div id="exercicio-pascalina-area" class="exercicio-pascalina-area" style="display: none;">
+                            <div class="exercicio-pascalina-instrucao">
+                                <span id="exercicio-pascalina-dica">Gire as rodas da Pascalina para calcular!</span>
+                                <button type="button" id="btn-resetar-pascalina-ex" class="btn-mini-pascalina">Voltar ao número inicial</button>
+                            </div>
+
+                            <div class="maquina maquina-compacta" id="pascalina-exercicio" aria-label="Pascalina interativa do exercício">
+                                <div class="grupo-classe" data-classe="2">
+                                    <div class="titulo-classe-compacto">2ª Classe: Milhares</div>
+                                    <div class="filas-classe">
+                                        <div class="fila" data-ordem="4" data-nome-ordem="Unidade de Milhar" data-sigla="UM" data-fator="1000">
+                                            <span class="badge-ordem-mini">4ª Ord. (UM)</span>
+                                            <img src="../img/setaPraCima.png" alt="Aumentar 4ª ordem (Unidade de Milhar)" class="seta-cima" role="button" tabindex="0">
+                                            <p>0</p>
+                                            <img src="../img/setaPraBaixo.png" alt="Diminuir 4ª ordem (Unidade de Milhar)" class="seta-baixo" role="button" tabindex="0">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="separador-classes" aria-hidden="true">.</div>
+
+                                <div class="grupo-classe" data-classe="1">
+                                    <div class="titulo-classe-compacto">1ª Classe: Unidades Simples</div>
+                                    <div class="filas-classe">
+                                        <div class="fila" data-ordem="3" data-nome-ordem="Centena" data-sigla="C" data-fator="100">
+                                            <span class="badge-ordem-mini">3ª Ord. (C)</span>
+                                            <img src="../img/setaPraCima.png" alt="Aumentar 3ª ordem (Centena)" class="seta-cima" role="button" tabindex="0">
+                                            <p>0</p>
+                                            <img src="../img/setaPraBaixo.png" alt="Diminuir 3ª ordem (Centena)" class="seta-baixo" role="button" tabindex="0">
+                                        </div>
+                                        <div class="fila" data-ordem="2" data-nome-ordem="Dezena" data-sigla="D" data-fator="10">
+                                            <span class="badge-ordem-mini">2ª Ord. (D)</span>
+                                            <img src="../img/setaPraCima.png" alt="Aumentar 2ª ordem (Dezena)" class="seta-cima" role="button" tabindex="0">
+                                            <p>0</p>
+                                            <img src="../img/setaPraBaixo.png" alt="Diminuir 2ª ordem (Dezena)" class="seta-baixo" role="button" tabindex="0">
+                                        </div>
+                                        <div class="fila" data-ordem="1" data-nome-ordem="Unidade" data-sigla="U" data-fator="1">
+                                            <span class="badge-ordem-mini">1ª Ord. (U)</span>
+                                            <img src="../img/setaPraCima.png" alt="Aumentar 1ª ordem (Unidade)" class="seta-cima" role="button" tabindex="0">
+                                            <p>0</p>
+                                            <img src="../img/setaPraBaixo.png" alt="Diminuir 1ª ordem (Unidade)" class="seta-baixo" role="button" tabindex="0">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pascalina-ex-status">
+                                <span>Número atual na Pascalina: <strong id="pascalina-ex-valor">0</strong></span>
+                                <button type="button" id="btn-responder-pascalina" class="btn-destaque-modulo">Responder com a Pascalina</button>
+                            </div>
+                        </div>
+
+                        <div id="exercicio-input-box" class="exercicio-input-box" style="display: none;">
+                            <label for="exercicio-input-resposta">Digite sua resposta:</label>
+                            <div class="exercicio-input-linha">
+                                <input type="text" id="exercicio-input-resposta" placeholder="Digite o resultado..." autocomplete="off">
+                                <button type="button" id="btn-verificar-input" class="btn-destaque-modulo">Responder</button>
+                            </div>
+                        </div>
+
+                        <div id="exercicio-opcoes" class="exercicio-opcoes" style="display: none;"></div>
+
+                        <div id="exercicio-feedback-inline" class="exercicio-feedback-inline" style="display: none;"></div>
+
+                        <div id="exercicio-resumo-final" class="exercicio-resumo-final" style="display: none;"></div>
+                    </div>
 
                     <div class="exercicios-rodape">
                         <button type="button" id="btn-questao-anterior">← Questão Anterior</button>

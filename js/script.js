@@ -87,6 +87,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const campoPesquisa = document.getElementById('pesquisar');
     const nosRaiz = document.querySelectorAll('.no-raiz');
+    if (nosRaiz.length > 0) {
+        nosRaiz.forEach((no, idx) => {
+            const strongTitulo = no.querySelector('.rotulo-no-raiz strong');
+            if (strongTitulo && !no.querySelector('.pilula-nome-modulo')) {
+                const pilula = document.createElement('span');
+                pilula.className = 'pilula-nome-modulo';
+                const textoOriginal = strongTitulo.textContent.trim();
+                const textoCurto = textoOriginal
+                    .replace(/^1 2 3\.\.\.\s*\((.+)\)$/i, '1. $1')
+                    .replace(/^Módulo\s+(\d+):\s*/i, '$1. ');
+                pilula.textContent = textoCurto || `Módulo ${idx + 1}`;
+                no.appendChild(pilula);
+            }
+
+            const linkCirculo = no.querySelector('.circulo-modulo');
+            if (linkCirculo) {
+                linkCirculo.addEventListener('click', (e) => {
+                    const isMobileView = window.matchMedia('(max-width: 768px)').matches;
+                    if (isMobileView && !no.classList.contains('popover-aberto')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        nosRaiz.forEach(outro => outro.classList.remove('popover-aberto'));
+                        no.classList.add('popover-aberto');
+                    }
+                });
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.no-raiz')) {
+                nosRaiz.forEach(no => no.classList.remove('popover-aberto'));
+            }
+        });
+    }
+
     if (campoPesquisa && nosRaiz.length > 0) {
         campoPesquisa.addEventListener('input', (e) => {
             const termo = e.target.value.trim().toLowerCase();
