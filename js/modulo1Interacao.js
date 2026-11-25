@@ -1069,9 +1069,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (elOpcoes) elOpcoes.style.display = 'none';
             if (elPascalinaDica) elPascalinaDica.textContent = q.dicaPascalina || 'Gire as rodas da Pascalina para calcular!';
 
-            const valorParaMostrar = questoesConcluidas.has(q.id) ? q.respostaCorreta : (q.valorInicial || 0);
             if (pascalinaExercicio) {
-                pascalinaExercicio.definirValor(valorParaMostrar, true);
+                pascalinaExercicio.definirValor(q.valorInicial || 0, true);
             }
         } else if (q.modo === 'teclado') {
             if (elPascalinaArea) elPascalinaArea.style.display = 'none';
